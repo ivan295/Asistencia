@@ -3,19 +3,23 @@
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
-        <!-- Sidebar user panel (optional) -->
         @if (! Auth::guest())
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image" />
+                    @if(Auth::user()->sexo == "Masculino")
+                    <img src="{{ asset('img/man.jpg')}}" class="img-circle" alt="User Image"/>
+                    @elseif(Auth::user()->sexo == "Femenino")
+                    <img src="{{ asset('img/woman.png')}}" class="img-circle" alt="User Image"/>
+                    @elseif(Auth::user()->sexo == "")
+                    <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image"/>
+                    @endif
                 </div>
                 <div class="pull-left info">
                     <p style="overflow: hidden;text-overflow: ellipsis;max-width: 160px;" data-toggle="tooltip" title="{{ Auth::user()->name }}">{{ Auth::user()->name}}</p>
-                    <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('adminlte_lang::message.online') }}</a>
                 </div>
             </div>
+            
         @endif
 
         <!-- search form (Optional)
@@ -36,6 +40,8 @@
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
             <!-- <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li> -->
             <li><a href="{{ url('asistencia') }}"><i class='fa fa-clock-o'></i> <span>Registro de Asistencia</span></a></li>
+            <li><a href="{{ url('funcionario') }}"><i class='fa fa-user'></i> <span>Datos de Funcionario</span></a></li>
+
             <!-- <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

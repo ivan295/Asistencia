@@ -4,7 +4,8 @@
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>J</b>UNÍN</span>
+        <img class="logo-mini" src="{{ asset('img/escudo.png')}}" width="45" height="45" alt="logo">
+        <!-- <span class="logo-mini"><b>J</b>UNÍN</span> -->
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg"><b>GAD </b>JUNÍN</span>
     </a>
@@ -123,15 +124,27 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="max-width: 280px;white-space: nowrap;overflow: hidden;overflow-text: ellipsis">
                             <!-- The user image in the navbar-->
-                            <img src="{{ Gravatar::get($user->email) }}" class="user-image" alt="User Image"/>
+                            <!-- <img src="{{ Gravatar::get($user->email) }}" class="user-image" alt="User Image"/> -->
+                                        @if(Auth::user()->sexo == "Masculino")
+                                <img src="{{ asset('img/man.jpg')}}" class="user-image" alt="User Image"/>
+                                @elseif(Auth::user()->sexo == "Femenino")
+                                <img src="{{ asset('img/woman.png')}}" class="user-image" alt="User Image"/>
+                                @elseif(Auth::user()->sexo == "")
+                                <img src="{{ Gravatar::get($user->email) }}" class="user-image" alt="User Image"/>
+                                @endif
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs" data-toggle="tooltip" title="{{ Auth::user()->name }}">{{ Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image" />
-                                <p>
+                                @if(Auth::user()->sexo == "Masculino")
+                                <img src="{{ asset('img/man.jpg')}}" class="img-circle" alt="User Image"/>
+                                @elseif(Auth::user()->sexo == "Femenino")
+                                <img src="{{ asset('img/woman.png')}}" class="img-circle" alt="User Image"/>
+                                @elseif(Auth::user()->sexo == "")
+                                <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image"/>
+                                @endif                                <p>
                                     <span data-toggle="tooltip" title="{{ Auth::user()->name }}">{{ Auth::user()->name }}</span>
                                     <!-- <small>{{ trans('adminlte_lang::message.login') }} Nov. 2012</small> -->
                                 </p>

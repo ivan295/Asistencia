@@ -15,23 +15,23 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('apellido');
-            $table->string('cedula',10)->unique();
-            $table->string('direccion');
-            $table->string('sexo');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('name')->nullable();
+            $table->string('apellido')->nullable();
+            $table->string('cedula',10)->unique()->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('sexo')->nullable();
+            $table->string('email')->unique()->nullable();
+            //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->timestamps();
 
-            $table->bigInteger('id_tipouser')->unsigned()->index();
+            $table->bigInteger('id_tipouser')->unsigned()->index()->nullable();
             $table->foreign('id_tipouser')->references('id')->on('type_users');
 
-            $table->bigInteger('id_edificio')->unsigned()->index();
+            $table->bigInteger('id_edificio')->unsigned()->index()->nullable();
             $table->foreign('id_edificio')->references('id')->on('edificio');
 
-            $table->bigInteger('id_departamento')->unsigned()->index();
+            $table->bigInteger('id_departamento')->unsigned()->index()->nullable();
             $table->foreign('id_departamento')->references('id')->on('departamento');
 
         });

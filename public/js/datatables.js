@@ -1,4 +1,3 @@
- 
  $('#datatable').DataTable({
 	 	responsive:true,
 	 	autoWidth:false,
@@ -14,4 +13,5 @@
             	'previous':"Anterior"
             }
         }
+        
 	 });

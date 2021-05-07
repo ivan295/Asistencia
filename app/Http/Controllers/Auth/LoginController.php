@@ -73,7 +73,7 @@ class LoginController extends Controller
         }
         if (! $this->attemptLoginAtAuthenticatesUsers($request)) {
             return $this->attempLoginUsingUsernameAsAnEmail($request);
-        }
+        } 
         return false;
     }
 

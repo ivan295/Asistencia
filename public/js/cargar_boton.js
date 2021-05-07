@@ -8,42 +8,33 @@ $(document).ready(function(){
             var fecha_hora =new Date();
             var hora = fecha_hora.getHours() + ':' + fecha_hora.getMinutes() + ':' + fecha_hora.getSeconds();
             var fecha = fecha_hora.getDate()+ '/' +(fecha_hora.getMonth()+1)+ '/' +fecha_hora.getFullYear();
-            var disable;
-            
-            
+                        
             $.each(data, function(i, item) {
                 
                 if(item.estado == 'Ingreso'){
                 var nestado = 'Inicio de descanso';
                 var estado = 'Descanso';
                 var btntype ='btn-warning';
-                // var disable = 'document.getElementById("modalidad").hidden = true;';
-                    
+                document.getElementById("combo").hidden = true;
                 }else if(item.estado == 'Descanso'){
                 var nestado = 'Reanudar jornada';
                 var estado = 'Reanudar';
                 var btntype ='btn-primary';
-                var disable = '';
-                
                 }else if(item.estado == 'Reanudar'){
                 var nestado = 'Finalizar Jornada';
                 var estado = 'Finalizado';
                 var btntype = 'btn-danger';
-                var disable = 'document.getElementById("modalidad").hidden = true;';
-                
+                document.getElementById("combo").hidden = true;
+
                 }else if(item.estado == 'Finalizado'){
-                    var nestado = 'Iniciar Jornada';
-                    var estado = 'Ingreso';
-                    var btntype = 'btn-success';
+                    document.getElementById("boton").hidden = true;
+                    document.getElementById("combo").hidden = true;
                 }
-                
-                $("#cuadro").append(
-                "<div class='col-md-3'>\
-                <button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"</button>\
+                $("#boton").append(
+                "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"   <i class='fa  fa-hourglass-3'></i></button>\
                 <input type='hidden' name='hora' value="+hora+">\
                 <input type='hidden' name='fecha' value="+fecha+">\
-                <input type='hidden' name='id_reloj' value="+item.id+">\
-                </div>"
+                <input type='hidden' name='id_reloj' value="+item.id+">"
                 ); 
                 
             });
@@ -52,25 +43,20 @@ $(document).ready(function(){
                 var nestado='Iniciar Jornada';
                 var estado = 'Ingreso';
                 var btntype = 'btn-success';
-                $("#cuadro").append(
-                    "<div class='col-md-3'>\
-                    <button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"</button>\
-                    <input type='hidden' name='hora' value="+hora+">\
-                    <input type='hidden' name='fecha' value="+fecha+">\
-                    </div>"
-                    );
+                $("#boton").append(
+                "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"  <i class='fa  fa-hourglass-3'></i></button>\
+                <input type='hidden' name='hora' value="+hora+">\
+                <input type='hidden' name='fecha' value="+fecha+">"
+                );
             }   
 
         });
         // funcion para llenar el select de modalidad
         $.get('modalidad_show',function (data){
-            $("#cuadro").append(
-                "<div class='col-md-6' id='combo'>\
-                <label>Modalidad de Trabajo</label>\
-                <select class='form-control' id='modalidad' name='id_modalidad'>\
+            $("#combo").append(
+                "<select class='form-control' id='modalidad' name='id_modalidad'>\
                 <option>Seleccionar Modaldiad</option>\
-                </select>\
-                </div>"
+                </select>"
             );
             $.each(data,function(i,item) {
                 $("#modalidad").append(
@@ -81,6 +67,7 @@ $(document).ready(function(){
         });
     // fin de funcion cargar
     }
+
 
 
     

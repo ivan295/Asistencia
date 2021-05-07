@@ -9,7 +9,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-
+use DB;
+use Illuminate\Support\Facades\Auth;
 /**
  * Class HomeController
  * @package App\Http\Controllers
@@ -26,13 +27,23 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return Response
-     */
     public function index()
     {
-        return view('adminlte::home');
+        $query = \DB::table('users')
+        ->select('users.cedula')
+        ->where('id','=',Auth::user()->id)
+        ->get();
+        foreach($query as $ced){
+            $var = $ced->cedula;
+        }
+        
+        if($var == NULL){
+            return redirect('/funcionario_edit');
+        }else{
+            return view('adminlte::home');
+
+        }
+        
+
     }
 }

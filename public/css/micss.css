@@ -1,0 +1,71 @@
+#btnregistro{
+    /* border: 1px solid #2e518b; anchura, estilo y color borde */
+padding: 10px; /*espacio alrededor texto*/
+/* background-color: #2e518b; color botón */
+color: #ffffff; /*color texto*/
+text-decoration: none; /*decoración texto*/
+text-transform: uppercase; /*capitalización texto*/
+font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+border-radius: 100px; /*bordes redondos*/
+}
+.btnregis{
+    padding: 35px;
+
+}
+.selectmod{
+    padding: 20px;
+
+}
+
+  .contenedor {
+    width: 100%;
+    height: 100%;
+    /* position: relative; */
+    max-width: 1000px;
+    margin: auto;
+    /* background: #ccc; */
+  }
+  .widget {
+    width: 100%;
+    height: 30%;
+    /* position: absolute; */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; 
+  }
+  .widget p {
+    display: inline-block;
+    line-height: 1em;
+  }
+  .fecha {
+    font-family: arial;
+    text-align: center;
+    font-size: 1.5em;
+    /* margin-bottom: 5px; */
+    /* background: rgba(0,0,0,.5); */
+    /* padding: 20px; */
+    width: 100%;
+  }
+  .reloj {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    width: 100%;
+    /* padding: 20px; */
+    font-size: 4em;
+    text-align: center;
+    /* background: rgba(0,0,0,.5); */
+  }
+  .reloj .cajaSegundos {
+    display: inline-block;  
+  }
+  .reloj .ampm, .reloj .segundos{
+    display: block;
+    font-size: 2rem;
+  }
+
+@media (min-width: 990px) and (max-width: 1150px){
+    .cuad{
+        display: block;
+    }
+}

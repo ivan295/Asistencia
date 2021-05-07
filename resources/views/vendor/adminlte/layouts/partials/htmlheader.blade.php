@@ -6,9 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{ mix('/css/all.css') }}" rel="stylesheet" type="text/css" />
-
-   
-
+    <link href="{{ asset('/css/micss.css') }}" rel="stylesheet" type="text/css" />
+    
+  
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -16,18 +16,12 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <!-- datatable css -->
-    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
 
-    <script src="{{ asset('/js/jquery.js') }}" defer></script>
+    <!-- <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 
- 
-<script type="text/javascript" src="DataTables/datatables.min.js"></script>
-    <!-- datatable js -->
     
-
+    
     <script>
         //See https://laracasts.com/discuss/channels/vue/use-trans-in-vuejs
         window.trans = @php
@@ -42,4 +36,22 @@
             echo json_encode($trans);
         @endphp
     </script>
+
+
+ <!-- datatable -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js" defer></script>
+    <script src=" https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js
+"defer></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js 
+"defer></script>
+
+<!-- sweet alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
+    
 </head>

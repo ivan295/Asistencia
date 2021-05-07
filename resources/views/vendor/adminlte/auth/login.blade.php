@@ -26,7 +26,7 @@
         <div class="login-box-body">
             <center><img alt="logo" src="{{ asset('img/logo.png')}}" width="300" height="170"></center>
             <p class="login-box-msg"> {{ trans('adminlte_lang::message.siginsession') }} </p>
-
+ 
             <login-form name="{{ config('auth.providers.users.field','email') }}"
                     domain="{{ config('auth.defaults.domain','') }}"></login-form>
 
