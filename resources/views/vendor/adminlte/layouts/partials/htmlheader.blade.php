@@ -7,8 +7,11 @@
 
     <link href="{{ mix('/css/all.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/micss.css') }}" rel="stylesheet" type="text/css" />
-    
-  
+    <link href="{{ asset('/css/carousel.css') }}" rel="stylesheet" type="text/css" />
+
+  <!-- carousel -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" > -->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -53,5 +56,10 @@
 
 <!-- sweet alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
+
+<!-- carousel -->
+<!-- <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"defer></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"defer></script>
     
 </head>

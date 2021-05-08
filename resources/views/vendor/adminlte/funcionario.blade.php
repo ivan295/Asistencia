@@ -3,9 +3,9 @@
 	Registro de Funcionario
 @endsection
 @section('main-content')
-
 <br></br>
 <!-- tabla para presentar registros --> 
+
 <form method="post"  action="/funcionario_update">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div class="col-md-14">
@@ -15,7 +15,6 @@
 			</div>
 			<div class="box-body">
 				<div class="row">
-				<input type="hidden" id="id_usuario" name="id_usuario" value="{{Auth::user()->id}}">
           			<div class="col-md-6">
           				<label for="nombre">Nombre</label>
           				<div class="input-group">
@@ -31,14 +30,14 @@
           				</div>
           			</div>
           			<div class="col-md-6">
-          				<label for="cedula">Cédula</label>
+          				<label for="cedula">Cédula de identidad</label>
           				<div class="input-group">
             				<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
             				<input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cédula" required>
           				</div>
           			</div>
           			<div class="col-md-6">
-          				<label for="Usuario">Dirección</label>
+          				<label for="Usuario">Dirección Domiciliaria</label>
           				<div class="input-group">
             				<span class="input-group-addon"><i class="fa fa-map"></i></span>
             				<input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección">
@@ -66,6 +65,9 @@
                                 </select>
                         </div>
                         <input type="hidden" id="id_edificio" name="edificio">
+						@error('edificio')
+      					<small class="text-danger">{{$message}}</small>
+      					@enderror
                     </div>
 					<div class="col-md-6">
                         <div class="form-group">
@@ -79,6 +81,9 @@
                                 </select>
                         </div>
                         <input type="hidden" id="id_departamento" name="departamento">
+						@error('departamento')
+      					<small class="text-danger">{{$message}}</small>
+      					@enderror
                     </div>
 				</div>
 		</div>
@@ -104,11 +109,14 @@
           				<div class="input-group">
           					<span class="input-group-addon"><i class="fa fa fa-key"></i></span>
             				<input type="password" class="form-control" name="password" id="password" placeholder="Nueva Contraseña" required>
-          				</div>
+							@error('password')
+      						<small class="text-danger">{{$message}}</small>
+      						@enderror
+						  </div>
           			</div>
       			</div>
 					<br></br>
-          			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Guardar</button>  
+          			<button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Guardar</button>  
 			</div>
 		</div>
 	</div>
