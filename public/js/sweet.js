@@ -13,6 +13,6 @@
           
           Toast.fire({
             icon: 'success',
-            title: 'Signed in successfully'
+            title: 'Bienvenido al registro de Asistencia'
           })
     

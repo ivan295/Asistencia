@@ -18,10 +18,9 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-
-    <!-- <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 
     
     
@@ -41,7 +40,7 @@
     </script>
 
 
- <!-- datatable -->
+    <!-- datatable -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
@@ -49,17 +48,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" defer></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" defer></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js" defer></script>
-    <script src=" https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js
-"defer></script>
-<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js 
-"defer></script>
+    <script src=" https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js" defer></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js" defer></script>
 
-<!-- sweet alert -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
-
-<!-- carousel -->
-<!-- <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"defer></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"defer></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"defer></script>
+    <!-- sweet alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
+    <!-- carousel -->
+    <!-- <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"defer></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"defer></script>
     
 </head>

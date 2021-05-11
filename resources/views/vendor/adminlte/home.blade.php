@@ -5,7 +5,7 @@
 @endsection
 @section('main-content')
 @include('adminlte::alerts.exito')
-	<br>
+	<br></br>
 	<div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-12 ">

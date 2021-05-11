@@ -17,7 +17,11 @@ Route::post('/asistencia_create', [AsistenciaController::class, 'store']);
 Route::get('/funcionario' , [FuncionarioController::class,'index']);
 Route::get('/funcionario_edit',[FuncionarioController::class,'edit']);
 Route::post('/funcionario_update',[FuncionarioController::class,'update']);
-
+// -------------------------------user profile----------------------------
+Route::get('/user_profile' , [FuncionarioController::class,'profile']); //ver datos
+Route::post('/change_password' , [FuncionarioController::class,'change']);
+Route::get('/user_profile_edit' , [FuncionarioController::class,'edit_profile']);
+Route::post('/user_profile_update' , [FuncionarioController::class,'profile_update']);
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
