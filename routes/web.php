@@ -5,7 +5,7 @@ use App\Http\Controllers\FuncionarioController;
 
 
  Route::get('/', function () {
-    return Redirect::to('/login'); 
+    return Redirect::to('/login');  
 });
 // -------------------- asistencia ---------------------------------
 Route::get('/asistencia', [AsistenciaController::class, 'index']);

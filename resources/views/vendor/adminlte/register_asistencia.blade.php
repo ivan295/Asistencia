@@ -15,7 +15,6 @@
 						<div class='col-md-3 btnregis' id="boton">
 						</div>
 							<div class='col-md-5 selectmod' id='combo'>
-								<label>Modalidad de Trabajo</label>
 								<br>
 								@error('id_modalidad')
       							<small class="text-danger">Se requiere seleccionar Modalidad</small>
@@ -75,33 +74,41 @@
     		</thead>
 			<tbody>
 				@foreach($query as $reloj)
-				<tr class='text-center'>
-					<td>{{$reloj->fecha}}</td>
-					@if($reloj->hora_ingreso > '08:10:00')
-					<td><span class="label label-danger pull-right">{{$reloj->hora_ingreso}} Atraso</span></td>
-					@elseif($reloj->hora_ingreso <= '08:10:00')
-					<td><span class="label label-success pull-right">{{$reloj->hora_ingreso}} A tiempo</span></td>
-					@endif
-					<td>{{$reloj->modalidad_ingreso}}</td>
-					@if($reloj->hora_descanso > '14:00:00')
-					<td class='text-center'><span class="label label-danger pull-right">{{$reloj->hora_descanso}} Atraso</span></td>
-					@elseif($reloj->hora_descanso <= '12:15:00')
-					<td class='text-center'><span class="label label-success pull-right">{{$reloj->hora_descanso}} A tiempo</span></td>
-					@endif
-					@if($reloj->hora_reanudacion > '13:45:00')
-					<td><span class="label label-danger pull-right">{{$reloj->hora_reanudacion}} Atraso</span></td>
-					@elseif($reloj->hora_reanudacion <= '13:45:00')
-					<td><span class="label label-success pull-right">{{$reloj->hora_reanudacion}} A tiempo</span></td>
-					@endif
-					<td>{{$reloj->modalidad_reanudacion}}</td>
-					@if($reloj->hora_salida > '16:45:00')
-					<td><span class="label label-danger pull-right">{{$reloj->hora_salida}} Atraso</span></td>
-					
-					@elseif($reloj->hora_salida <= '16:45:00')
-					<td><span class="label label-success pull-right">{{$reloj->hora_salida}} A tiempo</span></td>
-					@endif
-
-				</tr>
+					<tr class='text-center'>
+						<td>{{$reloj->fecha}}</td>
+						@if($reloj->hora_ingreso > '08:10:00')
+							<td><span class="label label-danger pull-right">{{$reloj->hora_ingreso}} Atraso</span></td>
+							@elseif($reloj->hora_ingreso <= '08:10:00')
+								<td><span class="label label-success pull-right">{{$reloj->hora_ingreso}} A tiempo</span></td>
+						@endif
+							<td>{{$reloj->modalidad_ingreso}}</td>
+						@if($reloj->hora_descanso != '' && $reloj->hora_descanso > '14:00:00')
+							<td class='text-center'><span class="label label-danger pull-right">{{$reloj->hora_descanso}} Marcación tardía</span></td>
+							@elseif($reloj->hora_descanso != '' && $reloj->hora_descanso <= '12:15:00')
+								<td class='text-center'><span class="label label-success pull-right">{{$reloj->hora_descanso}} A tiempo</span></td>
+                        @else
+                        <td style="hidden"></td>
+                        @endif
+						@if( $reloj->hora_reanudacion != '' && $reloj->hora_reanudacion > '13:45:00')
+							<td><span class="label label-danger pull-right">{{$reloj->hora_reanudacion}} Atraso</span></td>
+							@elseif( $reloj->hora_reanudacion != '' && $reloj->hora_reanudacion <= '13:45:00')
+								<td><span class="label label-success pull-right">{{$reloj->hora_reanudacion}} A tiempo</span></td>
+						@else
+                        <td style="hidden"></td>
+                        @endif
+                        @if($reloj->modalidad_reanudacion != 'Sin registro')
+							<td>{{$reloj->modalidad_reanudacion}}</td>
+                        @else
+                        <td style="hidden"></td>
+                        @endif
+                        @if( $reloj->hora_salida != '' && $reloj->hora_salida > '16:45:00')
+							<td><span class="label label-warning pull-right">{{$reloj->hora_salida}} Marcación tardía</span></td>
+							@elseif( $reloj->hora_salida != '' && $reloj->hora_salida <= '16:45:00' )
+								<td><span class="label label-success pull-right">{{$reloj->hora_salida}} A tiempo</span></td>
+                        @else
+                        <td style="hidden"></td>
+                        @endif
+					</tr>
 				@endforeach
 			</tbody>
 		</table>
@@ -110,6 +117,5 @@
 <script src="{{ asset('/js/cargar_boton.js') }}" defer></script>
 <script src="{{ asset('/js/reloj.js') }}" defer></script>
 <script src="{{ asset('/js/datatables.js') }}" defer></script>
-<script src="{{ asset('/js/sweet.js') }}" defer></script>
-
+<script src="{{ asset('/js/sweet.js') }}" defer></script> 
 @endsection

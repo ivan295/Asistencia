@@ -20,22 +20,21 @@ class AsistenciaController extends Controller
         // ->join('modalidad','modalidad.id','=','reloj.id_modalidad_reanudacion')
         // ->select('reloj.*','modalidad.descripcion as modalidad_reanudacion')
         // ->where('id_user','=', Auth::user()->id)
-        // ->orderBy('id', 'desc')
-        // ->get();
-        // return view('vendor.adminlte.asistencia', compact('datos','query')); 
-        
+        // ->orderBy('id', 'desc') 
+        // ->get();      
+        // return view('adminlte::asistencia', compact('query','datos')); 
         $query = \DB::table('reloj')
         ->join('modalidad as mod1','mod1.id','=','reloj.id_modalidad_ingreso')
         ->join('modalidad as mod2','mod2.id','=','reloj.id_modalidad_reanudacion')
         ->select('reloj.*','mod1.descripcion as modalidad_ingreso','mod2.descripcion as modalidad_reanudacion')
         ->where('id_user','=', Auth::user()->id)
-        // ->orderBy('id', 'desc')
+        ->orderBy('id', 'desc')
         ->get();
-
-        return view('vendor.adminlte.asistencia',compact('query'));
+        // dd($query);
+        return view('adminlte::register_asistencia',compact('query'));
+        
         
     }
-
     public function GetData(){
         $hoy = date("Y-m-d");
         $datos = \DB::table('reloj')
@@ -47,16 +46,15 @@ class AsistenciaController extends Controller
         // dd($datos);
         //return view('vendor.adminlte.asistencia', compact('datos'));  
     }
-    
     public function modalidadData(){
         $mod = \DB::table('modalidad')
+        ->where('modalidad.estado','=','TRUE')
         ->get();
         return response()->json($mod);
     }
-
     public function store(Request $request){
-        // dd($request);
         $marc = new Reloj;
+        // -------------ingreso-----------------
         if($request->btnregistro == "Ingreso"){
             $request->validate([
                 'id_modalidad' => 'required|numeric',
@@ -66,9 +64,10 @@ class AsistenciaController extends Controller
             $marc->id_modalidad_ingreso = $request->id_modalidad;
             $marc->estado = $request->btnregistro;
             $marc->id_user = Auth::user()->id;
+            $marc->id_modalidad_reanudacion = 3;
             $marc->save();
             return redirect('/asistencia');
-
+        // -----------------descanso--------------------
         }elseif($request->btnregistro == "Descanso"){
             $marc= Reloj::find($request->id_reloj);
             $marc->hora_descanso = $request->hora;
@@ -76,7 +75,7 @@ class AsistenciaController extends Controller
             $marc->id_user = Auth::user()->id;
             $marc->save();
             return redirect('/asistencia');
-
+        // ----------------reanudar---------------------
         }elseif($request->btnregistro == "Reanudar"){
             $request->validate([
                 'id_modalidad' => 'required|numeric',
@@ -88,7 +87,7 @@ class AsistenciaController extends Controller
             $marc->id_user = Auth::user()->id;
             $marc->save();
             return redirect('/asistencia');
-
+        // ------------------finalizar-------------------
         }elseif($request->btnregistro == "Finalizado"){
             $marc= Reloj::find($request->id_reloj);
             $marc->hora_salida = $request->hora;
@@ -98,8 +97,5 @@ class AsistenciaController extends Controller
             return redirect('/asistencia');
 
         }
-
-        
-
     }
 }
