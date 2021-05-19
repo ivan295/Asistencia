@@ -30,10 +30,11 @@ class FuncionarioController extends Controller
     {
         // dd($request);
         $request->validate([
-            'cedula' => 'required|max:10',
+            'cedula' => 'required|unique:users,cedula|max:10',
             'edificio'=>'required',
             'departamento'=>'required',
-            'password' =>'required'
+            'password' =>'required',
+            'tipouser'=>'required'
             ]);
         $id=Auth::user()->id;
         $edituser = User::find($id);
@@ -42,6 +43,7 @@ class FuncionarioController extends Controller
         $edituser->cedula = $request->cedula;
         $edituser->direccion = $request->direccion;
         $edituser->sexo = $request->genero;
+        $edituser->id_tipouser = $request->tipouser;
         $edituser->id_edificio = $request->edificio;
         $edituser->id_departamento = $request->departamento;
         $edituser->password= bcrypt($request->password);
@@ -52,9 +54,9 @@ class FuncionarioController extends Controller
         // perfil del funcionario
     public function profile(){
         $perfil = \DB::table('users')
-        ->join('departamento','departamento.id','=','users.id_departamento')
-        ->join('edificio','edificio.id','=','users.id_edificio')
-        ->select('users.*','edificio.descripcion as edificio','departamento.descripcion as departamento')
+        ->join('department','department.id','=','users.id_departamento')
+        ->join('building','building.id','=','users.id_edificio')
+        ->select('users.*','building.descripcion as edificio','department.descripcion as departamento')
         ->where('users.id','=', Auth::user()->id)
         ->get();
         return view('adminlte::profile', compact('perfil'));
@@ -70,9 +72,9 @@ class FuncionarioController extends Controller
 
     public function edit_profile(){
         $perfil_edit = \DB::table('users')
-        ->join('departamento','departamento.id','=','users.id_departamento')
-        ->join('edificio','edificio.id','=','users.id_edificio')
-        ->select('users.*','edificio.descripcion as edificio','departamento.descripcion as departamento')
+        ->join('department','department.id','=','users.id_departamento')
+        ->join('building','building.id','=','users.id_edificio')
+        ->select('users.*','building.descripcion as edificio','department.descripcion as departamento')
         ->where('users.id','=',Auth::user()->id)
         ->get();
         // dd($perfil_edit);

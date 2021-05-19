@@ -4,6 +4,7 @@
 	Registro de Asistencia
 @endsection
 @section('main-content')
+
 <br></br>
 <form method="post"  action="/asistencia_create">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -83,8 +84,8 @@
 						@endif
 							<td>{{$reloj->modalidad_ingreso}}</td>
 						@if($reloj->hora_descanso != '' && $reloj->hora_descanso > '14:00:00')
-							<td class='text-center'><span class="label label-danger pull-right">{{$reloj->hora_descanso}} Marcación tardía</span></td>
-							@elseif($reloj->hora_descanso != '' && $reloj->hora_descanso <= '12:15:00')
+							<td class='text-center'><span class="label label-warning pull-right">{{$reloj->hora_descanso}} Marcación tardía</span></td>
+							@elseif($reloj->hora_descanso != '' && $reloj->hora_descanso <= '12:30:00')
 								<td class='text-center'><span class="label label-success pull-right">{{$reloj->hora_descanso}} A tiempo</span></td>
                         @else
                         <td style="hidden"></td>

@@ -33,7 +33,10 @@
           				<div class="input-group">
             				<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
             				<input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cédula" required>
-          				</div>
+						  </div>
+						  @error('cedula')
+      						<small class="text-danger">{{$message}}</small>
+      						@enderror
           			</div>
           			<div class="col-md-6">
           				<label for="Usuario">Dirección Domiciliaria</label>
@@ -52,40 +55,65 @@
             				</select>
           					</div>
 					</div>
-					<div class="col-md-6">
-                        <div class="form-group">
-                            <label>Edificio</label>
-                                <select class="form-control"  id="consult_edificio" onchange="consultar_edificio()">
-                                    <option value="0">Seleccionar Edificio</option>
-                                    <?php $edi = DB::table('edificio')->get(); ?>
-                                    @foreach($edi as $edificio)
-                                    <option value="<?php  echo $edificio->id ; ?>"> <?php echo $edificio->descripcion; ?> </option>
-                                    @endforeach
-                                </select>
-                        </div>
-                        <input type="hidden" id="id_edificio" name="edificio">
-						@error('edificio')
-      					<small class="text-danger">{{$message}}</small>
-      					@enderror
-                    </div>
-					<div class="col-md-6">
-                        <div class="form-group">
-                            <label>Departamento</label>
-                                <select class="form-control"  id="consult_departamento" onchange="consultar_departamento()" data-live-search="true">
-                                    <option value="0">Seleccionar Departamento</option>
-                                    <?php $dep = DB::table('departamento')->get(); ?>
-                                    @foreach($dep as $departamento)
-                                    <option value="<?php  echo $departamento->id ; ?>"> <?php echo $departamento->descripcion; ?> </option>
-                                    @endforeach
-                                </select>
-                        </div>
-                        <input type="hidden" id="id_departamento" name="departamento">
-						@error('departamento')
-      					<small class="text-danger">{{$message}}</small>
-      					@enderror
-                    </div>
 				</div>
-		</div>
+			</div>
+			<div class="box box-success">
+				<div class="box-header with-border">
+					<h3 class="box-title"><i class="fa fa-institution"></i> Datos Institucionales</h3>
+				</div>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-md-6">
+                        	<div class="form-group">
+                            	<label>Edificio</label>
+                                	<select class="form-control"  id="consult_edificio" onchange="consultar_edificio()">
+                                    	<option value="0">Seleccionar Edificio</option>
+                                    	<?php $edi = DB::table('building')->get(); ?>
+                                    	@foreach($edi as $edificio)
+                                    	<option value="<?php  echo $edificio->id ; ?>"> <?php echo $edificio->descripcion; ?> </option>
+                                    	@endforeach
+                                	</select>
+                        	</div>
+                        	<input type="hidden" id="id_edificio" name="edificio">
+							@error('edificio')
+      						<small class="text-danger">{{$message}}</small>
+      						@enderror
+                    	</div>
+						<div class="col-md-6">
+                        	<div class="form-group">
+                            	<label>Departamento</label>
+                                	<select class="form-control"  id="consult_departamento" onchange="consultar_departamento()" data-live-search="true">
+                                    	<option value="0">Seleccionar Departamento</option>
+                                    	<?php $dep = DB::table('department')->get(); ?>
+                                    	@foreach($dep as $departamento)
+                                    	<option value="<?php  echo $departamento->id ; ?>"> <?php echo $departamento->descripcion; ?> </option>
+                                    	@endforeach
+                                	</select>
+                        	</div>
+                        	<input type="hidden" id="id_departamento" name="departamento">
+							@error('departamento')
+      						<small class="text-danger">{{$message}}</small>
+      						@enderror
+                    	</div>
+						<div class="col-md-6">
+                        	<div class="form-group">
+                            	<label>Tipo de Usuario</label>
+                                	<select class="form-control"  id="consult_tipouser" onchange="consultar_tipouser()" data-live-search="true">
+                                    	<option value="0">Seleccionar Departamento</option>
+                                    	<?php $type = DB::table('type_users')->get(); ?>
+                                    	@foreach($type as $tipo)
+                                    	<option value="<?php  echo $tipo->id ; ?>"> <?php echo $tipo->descripcion; ?> </option>
+                                    	@endforeach
+                                	</select>
+                        	</div>
+                        	<input type="hidden" id="id_tipouser" name="tipouser">
+							@error('tipouser')
+      						<small class="text-danger">{{$message}}</small>
+      						@enderror
+                    	</div>
+					</div>
+				</div>
+			</div>
 		<div>
 	</div>
 	<div class="col-md-14">

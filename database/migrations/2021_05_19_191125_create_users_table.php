@@ -19,20 +19,21 @@ class CreateUsersTable extends Migration
             $table->string('apellido')->nullable();
             $table->string('cedula',10)->unique()->nullable();
             $table->string('direccion')->nullable();
-            $table->string('sexo')->nullable();
+            $table->string('sexo',15)->nullable();
             $table->string('email')->unique()->nullable();
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('estado_eliminado')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_tipouser')->unsigned()->index()->nullable();
             $table->foreign('id_tipouser')->references('id')->on('type_users');
 
             $table->bigInteger('id_edificio')->unsigned()->index()->nullable();
-            $table->foreign('id_edificio')->references('id')->on('edificio');
+            $table->foreign('id_edificio')->references('id')->on('building');
 
             $table->bigInteger('id_departamento')->unsigned()->index()->nullable();
-            $table->foreign('id_departamento')->references('id')->on('departamento');
+            $table->foreign('id_departamento')->references('id')->on('department');
 
         });
     }

@@ -58,7 +58,7 @@
                             <label>Edificio</label>
                                 <select class="form-control"  id="consult_edificio" name="id_edificio"onchange="consultar_edificio()">
                                     <option value="<?php echo $profile->id_edificio; ?>"><?php echo $profile->edificio; ?></option>
-                                    <?php $edi = DB::table('edificio')->get(); ?>
+                                    <?php $edi = DB::table('building')->get(); ?>
                                     @foreach($edi as $edificio)
                                     <option value="<?php  echo $edificio->id ; ?>"> <?php echo $edificio->descripcion; ?> </option>
                                     @endforeach
@@ -74,7 +74,7 @@
                             <label>Departamento</label>
                                 <select class="form-control"  id="consult_departamento" name="id_departamento"onchange="consultar_departamento()" data-live-search="true">
                                     <option value="<?php echo $profile->id_departamento; ?>"><?php echo $profile->departamento; ?></option>
-                                    <?php $dep = DB::table('departamento')->get(); ?>
+                                    <?php $dep = DB::table('department')->get(); ?>
                                     @foreach($dep as $departamento)
                                     <option value="<?php  echo $departamento->id ; ?>"> <?php echo $departamento->descripcion; ?> </option>
                                     @endforeach

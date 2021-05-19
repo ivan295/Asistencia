@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEdificioTable extends Migration
+class CreateIpIngresoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateEdificioTable extends Migration
      */
     public function up()
     {
-        Schema::create('edificio', function (Blueprint $table) {
+        Schema::create('ip_ingreso', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('descripcion');
+            $table->string('ip',11);
+            $table->date('fecha');
+            $table->time('hora');
             $table->timestamps();
-            
+
+            $table->bigInteger('id_reloj')->unsigned()->index();
+            $table->foreign('id_reloj')->references('id')->on('clock');
+
         });
     }
 
@@ -28,6 +33,6 @@ class CreateEdificioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('edificio');
+        Schema::dropIfExists('ip_ingreso');
     }
 }

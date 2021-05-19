@@ -1,7 +1,8 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Inicio
+	
+	{{ trans('adminlte_lang::message.Inicio') }}
 @endsection
 @section('main-content')
 @include('adminlte::alerts.exito')

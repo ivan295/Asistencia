@@ -3,7 +3,7 @@
 	Datos del Funcionario
 @endsection
 @section('main-content')
-<br></br>
+<br>
 <!-- <div class="col-md-14"> -->
   <div class="row">
     <div class="col-md-6 col-md-offset-3">

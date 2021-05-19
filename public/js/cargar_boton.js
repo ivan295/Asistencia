@@ -5,10 +5,7 @@ $(document).ready(function(){
     function cargar(){
       
         $.get('asistencia_boton', function (data) {
-            var fecha_hora =new Date();
-            var hora = fecha_hora.getHours() + ':' + fecha_hora.getMinutes() + ':' + fecha_hora.getSeconds();
-            var fecha = fecha_hora.getDate()+ '/' +(fecha_hora.getMonth()+1)+ '/' +fecha_hora.getFullYear();
-                        
+                  
             $.each(data, function(i, item) {
                 
                 if(item.estado == 'Ingreso'){
@@ -17,9 +14,11 @@ $(document).ready(function(){
                 var btntype ='btn-warning';
                 document.getElementById("combo").hidden = true;
                 }else if(item.estado == 'Descanso'){
+                    
                 var nestado = 'Reanudar jornada';
                 var estado = 'Reanudar';
                 var btntype ='btn-primary';
+
                 }else if(item.estado == 'Reanudar'){
                 var nestado = 'Finalizar Jornada';
                 var estado = 'Finalizado';
@@ -32,8 +31,6 @@ $(document).ready(function(){
                 }
                 $("#boton").append(
                 "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"   <i class='fa  fa-hourglass-3'></i></button>\
-                <input type='hidden' name='hora' value="+hora+">\
-                <input type='hidden' name='fecha' value="+fecha+">\
                 <input type='hidden' name='id_reloj' value="+item.id+">"
                 ); 
                 
@@ -44,9 +41,7 @@ $(document).ready(function(){
                 var estado = 'Ingreso';
                 var btntype = 'btn-success';
                 $("#boton").append(
-                "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"  <i class='fa  fa-hourglass-3'></i></button>\
-                <input type='hidden' name='hora' value="+hora+">\
-                <input type='hidden' name='fecha' value="+fecha+">"
+                "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"  <i class='fa  fa-hourglass-3'></i></button>"
                 );
             }   
 

@@ -8,7 +8,6 @@
     <link href="{{ mix('/css/all.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/micss.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/carousel.css') }}" rel="stylesheet" type="text/css" />
-
   <!-- carousel -->
   <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" > -->
 
