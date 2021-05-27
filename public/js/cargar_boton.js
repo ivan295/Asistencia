@@ -30,7 +30,8 @@ $(document).ready(function(){
                     document.getElementById("combo").hidden = true;
                 }
                 $("#boton").append(
-                "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"   <i class='fa  fa-hourglass-3'></i></button>\
+                "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro'>"+nestado+"   <i class='fa  fa-hourglass-3'></i></button>\
+                <input type='hidden' name='btnregistro' value="+estado+">\
                 <input type='hidden' name='id_reloj' value="+item.id+">"
                 ); 
                 
@@ -41,7 +42,9 @@ $(document).ready(function(){
                 var estado = 'Ingreso';
                 var btntype = 'btn-success';
                 $("#boton").append(
-                "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro' value="+estado+">"+nestado+"  <i class='fa  fa-hourglass-3'></i></button>"
+                "<button type='submit' class='btn-lg btn "+btntype+"' id='btnregistro' name='btnregistro'>"+nestado+"  <i class='fa  fa-hourglass-3'></i></button>\
+                <input type='hidden' name='btnregistro' value="+estado+">\
+                "
                 );
             }   
 
@@ -66,3 +69,19 @@ $(document).ready(function(){
 
 
     
+    function alerta(){
+        Swal.fire({
+            title: 'Deseas Guardar los datos?',
+            showDenyButton: true,
+            // showCancelButton: true,
+            confirmButtonText: 'Sí, guardar',
+            denyButtonText: 'No guardar',
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire('Guardado con éxito!', '', 'success')
+            } else if (result.isDenied) {
+              Swal.fire('Los datos no fueron guardados', '', 'info')
+            }
+          })
+        }

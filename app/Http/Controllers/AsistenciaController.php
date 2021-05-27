@@ -5,7 +5,7 @@ use DateTimeZone;
 use App\Models\Reloj;
 use App\Models\Asistencia;
 use App\Models\Ip_ingreso;
-use App\Models\Ip_inicio_descanso;
+use App\Models\Ip_descanso;
 use App\Models\Ip_reanudacion;
 use App\Models\Ip_fin_jornada;
 use DB;
@@ -41,7 +41,8 @@ class AsistenciaController extends Controller
     }
 
     public function GetData(){
-        $hoy = date("Y-m-d");
+        $data = new DateTime("now", new DateTimeZone('America/Guayaquil'));
+        $hoy = $data->format('Y-m-d');    
         $datos = \DB::table('clock')
         ->join('assistance_status','assistance_status.id','=','clock.id_estado_asistencia')
         ->select('clock.id','assistance_status.descripcion as estado')
@@ -61,9 +62,10 @@ class AsistenciaController extends Controller
     }
 
     public function store(Request $request){
-    $fecha = date("Y-m-d");
-    $hora = new DateTime("now", new DateTimeZone('America/Guayaquil'));
-    $horaf = $hora->format('H:i:s');
+    // $fecha = date("Y-m-d");
+    $data = new DateTime("now", new DateTimeZone('America/Guayaquil'));
+    $horaf = $data->format('H:i:s');
+    $fecha = $data->format('Y-m-d');
 
     function getIP() {
         if (isset($_SERVER)) {
@@ -101,7 +103,7 @@ class AsistenciaController extends Controller
             $ip->ip = getIP();
             $ip->id_reloj = $marc->id;
             $ip->save();
-            return redirect('/asistencia');
+            return redirect('/asistencia')->with('marcar','ok');
         // -----------------descanso--------------------
         }elseif($request->btnregistro == "Descanso"){
             $marc= Reloj::find($request->id_reloj);
@@ -110,13 +112,13 @@ class AsistenciaController extends Controller
             $marc->id_user = Auth::user()->id;
             $marc->save();
             //ingreso de ip a tabla ip_inicio_dscanso
-            $ip= new Ip_inicio_descanso;
+            $ip= new Ip_descanso;
             $ip->fecha= $fecha;
             $ip->hora = $horaf;
             $ip->ip = getIP();
             $ip->id_reloj = $marc->id;
             $ip->save();
-            return redirect('/asistencia');
+            return redirect('/asistencia')->with('marcar','ok');
         // ----------------reanudar---------------------
         }elseif($request->btnregistro == "Reanudar"){
             $request->validate([
@@ -135,7 +137,7 @@ class AsistenciaController extends Controller
             $ip->ip = getIP();
             $ip->id_reloj = $marc->id;
             $ip->save();
-            return redirect('/asistencia');
+            return redirect('/asistencia')->with('marcar','ok');
         // ------------------finalizar-------------------
         }elseif($request->btnregistro == "Finalizado"){
             $marc= Reloj::find($request->id_reloj);
@@ -150,8 +152,7 @@ class AsistenciaController extends Controller
             $ip->ip = getIP();
             $ip->id_reloj = $marc->id;
             $ip->save();
-            return redirect('/asistencia');
-
+            return redirect('/asistencia')->with('marcar','ok');
         }
     }
 }

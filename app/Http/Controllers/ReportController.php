@@ -21,13 +21,16 @@ class ReportController extends Controller
         $data = \DB::table('clock')
         ->join('modality as mod1','mod1.id','=','clock.id_modalidad_ingreso')
         ->join('modality as mod2','mod2.id','=','clock.id_modalidad_reanudacion')
-        ->select('clock.*','mod1.descripcion as modalidad_ingreso','mod2.descripcion as modalidad_reanudacion')
+        ->join('users','users.id','=','clock.id_user')
+        ->select('clock.*','mod1.descripcion as modalidad_ingreso','mod2.descripcion as modalidad_reanudacion','users.name as nombre','users.apellido as apellido','users.cedula as cedula')
         ->where('id_user','=', Auth::user()->id)
         ->where('clock.fecha','>=',$request->desde)
         ->where('clock.fecha','<=',$request->hasta)
         ->get();
-        $pdf = PDF::loadView('adminlte::pdf_view',compact('data','fdesde','fhasta'));
-        return $pdf->download('pdf_file.pdf');
+        
+        return PDF::loadView('adminlte::pdf_view',compact('data','fdesde','fhasta'))
+        ->setPaper('a4', 'landscape')
+        ->download('registro.pdf');
         // dd($data);
     }
 }

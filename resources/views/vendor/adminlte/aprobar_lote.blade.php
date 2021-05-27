@@ -21,51 +21,56 @@ function convertir ($fecha) {
   }
 ?>
 <br>
+<form method="post" class="form_marcar" action="/array_check">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div class="col-md-14">
-<!-- <button type="submit" class="btn btn-warning ">Aprobación de Asistencia en Lote <i class="fa fa-database"></i></button> -->
-    <a type="button" class="btn btn-warning " href="{{ url('/aprobar_lote')}}">Aprobación de Asistencia en Lote <i class="fa fa-database"></i></a>
-    <br></br>
     <div class="box box-success">
         <div class="box-header with-border">
             <i class="fa fa-clock-o"></i>
-            <h3 class="box-title">Registros de Asistencia</h3>
+            <h3 class="box-title">Registros de Asistencia </h3>
         </div>
+        <button type="submit" class="btn btn-danger"> Aprobar</button>
+
         <!-- bgcolor="#00a65a" -->
         <table id="datatable" class="table table-striped table-bordered">
             <thead>
-                <tr>
+                <tr><th class='text-center'>Seleccionar</th>
                     <th class='text-center'>Fecha</th>
                     <th class='text-center'>Nombre</th>
                     <th class='text-center'>Apellido</th>
                     <th class='text-center'>Cédula</th>
-                    <th class='text-center'>Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($query2 as $regist)
                 <tr class='text-center'>
+                    <td><input type="checkbox" name="marcaciones[]" value="{{$regist->id}}" required></td>
                     <td>{{convertir($regist->fecha)}}</td>
                     <td>{{$regist->nombre}}</td>
                     <td>{{$regist->apellido}}</td>
                     <td>{{$regist->cedula}}</td>
-                    <td class="text-center">
-                        <div class="row">
-                            <div class="col-md-3 col-md-offset-3">
-                                <form action="estado_registro_edit/{{$regist->id}}" method="post">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-info btn-xs">Opción <i
-                                            class="fa fa-eye"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+<?php
+    if (is_array(['marcaciones'])) {
+        $selected = '';
+        $num_marcaciones = count(['marcaciones']);
+        $current = 0;
+        foreach (['marcaciones'] as $key => $value) {
+            if ($current != $num_marcaciones-1)
+                $selected .= $value.', ';
+            else
+                $selected .= $value.'.';
+            $current++;
+        }
+    }
+?>
 
+</form>
 
 <script src="{{ asset('/js/datatables.js') }}" defer></script>
 @endsection

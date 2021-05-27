@@ -15,8 +15,8 @@ use App\Http\Controllers\EstadoAsistenciaController;
 });
 
 Auth::routes();
-Route::group(['middleware' => 'auth'], function () {
 
+Route::group(['middleware' => 'auth'], function () {
 // ------------------------ Edificio -----------------------
 Route::get('/edificio', [BuildingController::class,'index']);
 Route::post('/edificio_create',[BuildingController::class,'store']);
@@ -60,12 +60,14 @@ Route::get('/user_profile' , [FuncionarioController::class,'profile']); //ver da
 Route::post('/change_password' , [FuncionarioController::class,'change']);
 Route::get('/user_profile_edit' , [FuncionarioController::class,'edit_profile']);
 Route::post('/user_profile_update' , [FuncionarioController::class,'profile_update']);
-//------------------------------ report ------------------------------------
+//------------------------------ reporte de asistencia ------------------------------------
 Route::get('/report_index',[ReportController::class,'index']);
 Route::post('/report_search', [ReportController::class,'search']);
 
 // --------------------------- aprobar asistencia -----------------------------
 Route::get('/estado_registro_view', [EstadoRegistroController::class,'index'] );
-
-        
+Route::post('/estado_registro_edit/{id}', [EstadoRegistroController::class,'edit'] );
+Route::post('/estado_registro_update/{id}',[EstadoRegistroController::class, 'update']);
+Route::get('/aprobar_lote',[EstadoRegistroController::class,'lote_index'] );
+Route::post('/array_check',[EstadoRegistroController::class,'arrayCheck']);
 });

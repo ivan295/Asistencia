@@ -13,6 +13,5 @@
           
           Toast.fire({
             icon: 'success',
-            title: 'Bienvenido al registro de Asistencia'
+            title: 'Éxito al guardar el registro de Asistencia'
           })
-    

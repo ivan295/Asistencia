@@ -1,14 +1,3 @@
-@if (Session::has('success'))
-
-<script type="text/javascript">
-
-Swal.fire(
-    'Buen trabajo',
-    '{!! Session::get('success') !!}',
-    'success'
-{
-    button:'OK',
-})
- </script>
- 
-        @endif
+@if (session('eliminar') == 'ok')
+    <script src="{{ asset('/js/eliminado.js') }}" defer></script>
+@endif

@@ -35,14 +35,16 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
+        @if(Auth::user()->id_tipouser == 1)
             <li class="header">OPCIONES</li>
-            
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
             <!-- <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li> -->
             <li><a href="{{ url('asistencia') }}"><i class='fa fa-clock-o'></i> <span>Registro de Asistencia</span></a></li>
             <li><a href="{{ url('report_index') }}"><i class='fa fa-file-pdf-o'></i> <span>Reporte de Asistencia</span></a></li>
             <!-- <li><a href="{{ url('funcionario') }}"><i class='fa fa-user'></i> <span>Datos de Funcionario</span></a></li> -->
             <li><a href="{{ url('estado_registro_view') }}"><i class='fa fa-pencil'></i> <span>Aprobación de Asistencia</span></a></li> 
+            
+            
             <li class="treeview">
                 <a href="#"><i class='fa fa-cogs'></i> <span>Configuracion</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -52,6 +54,24 @@
                     <li><a href="{{ url('direccion_ip') }}"><i class='fa fa-desktop'></i> <span>Agregar IP</span></a></li>
                 </ul>
             </li>
+        @endif
+        @if(Auth::user()->id_tipouser == 2 || Auth::user()->id_tipouser == 3)
+            <li class="header">OPCIONES</li>
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <!-- <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li> -->
+            <li><a href="{{ url('asistencia') }}"><i class='fa fa-clock-o'></i> <span>Registro de Asistencia</span></a></li>
+            <li><a href="{{ url('report_index') }}"><i class='fa fa-file-pdf-o'></i> <span>Reporte de Asistencia</span></a></li>
+            <!-- <li><a href="{{ url('funcionario') }}"><i class='fa fa-user'></i> <span>Datos de Funcionario</span></a></li> -->
+            <li><a href="{{ url('estado_registro_view') }}"><i class='fa fa-pencil'></i> <span>Aprobación de Asistencia</span></a></li> 
+        @endif
+        @if(Auth::user()->id_tipouser == 4)
+            <li class="header">OPCIONES</li>
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <!-- <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li> -->
+            <li><a href="{{ url('asistencia') }}"><i class='fa fa-clock-o'></i> <span>Registro de Asistencia</span></a></li>
+            <li><a href="{{ url('report_index') }}"><i class='fa fa-file-pdf-o'></i> <span>Reporte de Asistencia</span></a></li>
+            <!-- <li><a href="{{ url('funcionario') }}"><i class='fa fa-user'></i> <span>Datos de Funcionario</span></a></li> -->
+        @endif
         </ul>
     </section>
     

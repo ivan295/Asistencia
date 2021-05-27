@@ -5,8 +5,15 @@
 @endsection
 @section('main-content')
 
+	@if(session('marcar')=='ok')
+		<script src="{{ asset('/js/mensajemarcar.js') }}" defer></script>
+	@endif
+	@if($errors->any())
+	<script src="{{ asset('/js/error.js') }}" defer></script>
+	@endif
+
 <br></br>
-<form method="post"  action="/asistencia_create">
+<form method="post" class="form_marcar" action="/asistencia_create">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div class="col-md-14">
 		<div class="box box-success">
@@ -118,5 +125,5 @@
 <script src="{{ asset('/js/cargar_boton.js') }}" defer></script>
 <script src="{{ asset('/js/reloj.js') }}" defer></script>
 <script src="{{ asset('/js/datatables.js') }}" defer></script>
-<script src="{{ asset('/js/sweet.js') }}" defer></script> 
+<script src="{{ asset('/js/alertaMarcar.js') }}" defer></script> 
 @endsection

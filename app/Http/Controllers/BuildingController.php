@@ -10,6 +10,7 @@ class BuildingController extends Controller
 {
     public function index(){
         $edif = \DB::table('building')
+        ->where('building.estado_eliminado','!=','TRUE')
         ->get();
         return view('adminlte::edificio.newEdificio',compact('edif'));
     }
@@ -36,6 +37,10 @@ class BuildingController extends Controller
         return redirect('/edificio');
     }
     public function destroy($id){
+        $borra = Building::findOrFail($id);
+        $borra->estado_eliminado = 'True';
+        $borra->save();
+        return redirect('/edificio')->with('eliminar','ok'); //envio variables de sesion, necesita dos parametros, primero el nombre de la variable y segundo el mensaje
 
     }
 }
