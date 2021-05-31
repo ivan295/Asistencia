@@ -99,7 +99,7 @@
                         	<div class="form-group">
                             	<label>Tipo de Usuario</label>
                                 	<select class="form-control"  id="consult_tipouser" onchange="consultar_tipouser()" data-live-search="true">
-                                    	<option value="0">Seleccionar Departamento</option>
+                                    	<option value="0">Seleccionar Tipo de Usuario</option>
                                     	<?php $type = DB::table('type_users')->get(); ?>
                                     	@foreach($type as $tipo)
                                     	<option value="<?php  echo $tipo->id ; ?>"> <?php echo $tipo->descripcion; ?> </option>

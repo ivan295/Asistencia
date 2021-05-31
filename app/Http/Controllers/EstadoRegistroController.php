@@ -77,7 +77,10 @@ class EstadoRegistroController extends Controller
 
     public function arrayCheck(Request $request){
 
-        // dd($request);
+        $request->validate([
+            'marcaciones' => 'required',
+            ]);
+        
         $cont = 0;
     	while($cont < count($request->marcaciones)){
 
@@ -86,6 +89,6 @@ class EstadoRegistroController extends Controller
         $upestado->save();
         $cont = $cont + 1;
         }
-        return redirect('/estado_registro_view')->with('marcar','ok');
+        return redirect('/aprobar_lote')->with('marcar_lote','ok');
     }
 }

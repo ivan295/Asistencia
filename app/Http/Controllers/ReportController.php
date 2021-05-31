@@ -7,6 +7,9 @@ use App\Models\Reloj;
 use PDF;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use DateTime;
+use DateTimeZone;
+use DOMDocument;
 
 class ReportController extends Controller
 {
@@ -15,7 +18,9 @@ class ReportController extends Controller
     }
 
     public function search(Request $request){
-        
+        $data = new DateTime("now", new DateTimeZone('America/Guayaquil'));
+        $fecha = $data->format('Y_m_d');
+
         $fdesde = $request->desde;
         $fhasta = $request->hasta;
         $data = \DB::table('clock')
@@ -27,10 +32,10 @@ class ReportController extends Controller
         ->where('clock.fecha','>=',$request->desde)
         ->where('clock.fecha','<=',$request->hasta)
         ->get();
-        
+
         return PDF::loadView('adminlte::pdf_view',compact('data','fdesde','fhasta'))
         ->setPaper('a4', 'landscape')
-        ->download('registro.pdf');
+        ->download('registro_asistencia_'.$fecha.'.pdf');
         // dd($data);
     }
 }

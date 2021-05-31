@@ -24,7 +24,6 @@ class CreateClockTable extends Migration
             $table->bigInteger('id_modalidad_reanudacion')->unsigned()->index()->nullable();
             $table->foreign('id_modalidad_reanudacion')->references('id')->on('modality');
             $table->time('hora_salida')->nullable();
-            $table->string('ip',10)->nullable();
             $table->boolean('estado_eliminado')->nullable();
             $table->timestamps();
 

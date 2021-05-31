@@ -23,6 +23,9 @@ class CreateTableipTable extends Migration
             $table->bigInteger('id_edificio')->unsigned()->index()->nullable();
             $table->foreign('id_edificio')->references('id')->on('building');
 
+            $table->bigInteger('id_departamento')->unsigned()->index()->nullable();
+            $table->foreign('id_departamento')->references('id')->on('department');
+
         });
     }
 

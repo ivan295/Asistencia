@@ -3,6 +3,14 @@
 Estado de Registro de Asistencia
 @endsection
 @section('main-content')
+
+@if(session('marcar_lote')=='ok')
+		<script src="{{ asset('/js/exito.js') }}" defer></script>
+	@endif
+	@if($errors->any())
+	<script src="{{ asset('/js/error.js') }}" defer></script>
+@endif
+
 <?php 
 function convertir ($fecha) {
     $fecha = substr($fecha, 0, 10);
@@ -21,7 +29,7 @@ function convertir ($fecha) {
   }
 ?>
 <br>
-<form method="post" class="form_marcar" action="/array_check">
+<form class="form_lote" method="post" class="form_marcar" action="/array_check">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div class="col-md-14">
     <div class="box box-success">
@@ -29,8 +37,9 @@ function convertir ($fecha) {
             <i class="fa fa-clock-o"></i>
             <h3 class="box-title">Registros de Asistencia </h3>
         </div>
-        <button type="submit" class="btn btn-danger"> Aprobar</button>
-
+        <div class="col-md-4 col-md-offset-4">
+        <button type="submit" class="btn btn-danger">Click Aquí para aprobar Registros de Asistencias</button>
+        </div>
         <!-- bgcolor="#00a65a" -->
         <table id="datatable" class="table table-striped table-bordered">
             <thead>
@@ -44,7 +53,7 @@ function convertir ($fecha) {
             <tbody>
                 @foreach($query2 as $regist)
                 <tr class='text-center'>
-                    <td><input type="checkbox" name="marcaciones[]" value="{{$regist->id}}" required></td>
+                    <td><input type="checkbox" name="marcaciones[]" value="{{$regist->id}}"></td>
                     <td>{{convertir($regist->fecha)}}</td>
                     <td>{{$regist->nombre}}</td>
                     <td>{{$regist->apellido}}</td>
@@ -73,4 +82,5 @@ function convertir ($fecha) {
 </form>
 
 <script src="{{ asset('/js/datatables.js') }}" defer></script>
+<script src="{{ asset('/js/guardando.js') }}" defer></script>
 @endsection

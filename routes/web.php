@@ -32,11 +32,12 @@ Route::put('departamento_update/{id}',[DepartmentController::class, 'update']);
 Route::delete('/departamento_remove/{id}',[DepartmentController::class, 'destroy']);
 
 // -------------------------- Asignar direccion ip --------------------------
-Route::get('/direccion_ip', [DireccionIpController::class,'index']);
-Route::post('/direccion_ip_create',[DireccionIpController::class,'store']);
-Route::post('/direccion_ip_edit/{id}',[DireccionIpController::class, 'edit']);
-Route::put('/direccion_ip_update/{id}',[DireccionIpController::class, 'update']);
-Route::delete('/direccion_ip_remove/{id}',[DireccionIpController::class, 'destroy']);
+// Route::get('/direccion_ip', [DireccionIpController::class,'index']);
+// Route::post('/direccion_ip_create',[DireccionIpController::class,'store']);
+// Route::post('/direccion/{id}/edit',[DireccionIpController::class, 'edit']);
+// Route::put('/direccion_update/{id}',[DireccionIpController::class, 'update']);
+// Route::delete('/direccion_ip_remove/{id}',[DireccionIpController::class, 'destroy']);
+Route::resource('direccion_ip', DireccionIpController::class);
 
 // ---------------------------- tipo de usuario ----------------------------
 Route::get('/type_users', [Type_usersController::class,'index']);
@@ -70,4 +71,8 @@ Route::post('/estado_registro_edit/{id}', [EstadoRegistroController::class,'edit
 Route::post('/estado_registro_update/{id}',[EstadoRegistroController::class, 'update']);
 Route::get('/aprobar_lote',[EstadoRegistroController::class,'lote_index'] );
 Route::post('/array_check',[EstadoRegistroController::class,'arrayCheck']);
+
+// ---------------------------- registros ----------------------------------
+Route::get('/ver_asistencia',[AsistenciaController::class,'VerAsistencia']);
+
 });

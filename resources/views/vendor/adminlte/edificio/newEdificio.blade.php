@@ -74,7 +74,7 @@
                                   <button type="submit" class="btn btn-warning btn-xs"data-toggle="modal" data-target="#editedificio">Editar <i class="fa fa-edit"></i></button></form>
                                 </div>
                                 <div class="col-md-6 text-left">
-                                <form class="form_eliminar" id="borra" action="edificio_remove/{{$build->id}}" method="post">
+                                <form class="form_eliminar" action="edificio_remove/{{$build->id}}" method="post">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="btn btn-danger btn-xs"  >Borrar <i class="fa fa-trash"></i></button>

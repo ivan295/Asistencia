@@ -62,7 +62,13 @@
             <li><a href="{{ url('asistencia') }}"><i class='fa fa-clock-o'></i> <span>Registro de Asistencia</span></a></li>
             <li><a href="{{ url('report_index') }}"><i class='fa fa-file-pdf-o'></i> <span>Reporte de Asistencia</span></a></li>
             <!-- <li><a href="{{ url('funcionario') }}"><i class='fa fa-user'></i> <span>Datos de Funcionario</span></a></li> -->
-            <li><a href="{{ url('estado_registro_view') }}"><i class='fa fa-pencil'></i> <span>Aprobación de Asistencia</span></a></li> 
+            <li class="treeview">
+                <a href="#"><i class='fa fa-cogs'></i> <span>Aprobación de Asistencia</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                <li><a href="{{ url('estado_registro_view') }}"><i class='fa fa-pencil'></i> <span>Aprobación Individual</span></a></li> 
+                <li><a href="{{ url('aprobar_lote') }}"><i class='fa fa-database'></i> <span>Aprobación en Lote</span></a></li>
+                </ul>
+            </li>
         @endif
         @if(Auth::user()->id_tipouser == 4)
             <li class="header">OPCIONES</li>
@@ -70,6 +76,7 @@
             <!-- <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li> -->
             <li><a href="{{ url('asistencia') }}"><i class='fa fa-clock-o'></i> <span>Registro de Asistencia</span></a></li>
             <li><a href="{{ url('report_index') }}"><i class='fa fa-file-pdf-o'></i> <span>Reporte de Asistencia</span></a></li>
+            <li><a href="{{ url('ver_asistencia') }}"><i class='fa fa-desktop'></i> <span>Mis registros</span></a></li>
             <!-- <li><a href="{{ url('funcionario') }}"><i class='fa fa-user'></i> <span>Datos de Funcionario</span></a></li> -->
         @endif
         </ul>

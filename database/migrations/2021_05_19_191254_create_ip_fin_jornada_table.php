@@ -16,6 +16,7 @@ class CreateIpFinJornadaTable extends Migration
         Schema::create('ip_fin_jornada', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ip',11);
+            $table->string('lugar_marcacion',5);
             $table->date('fecha');
             $table->time('hora');
             $table->timestamps();

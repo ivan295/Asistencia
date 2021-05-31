@@ -22,8 +22,6 @@ function convertir ($fecha) {
 ?>
 <br>
 <div class="col-md-14">
-<!-- <button type="submit" class="btn btn-warning ">Aprobación de Asistencia en Lote <i class="fa fa-database"></i></button> -->
-    <a type="button" class="btn btn-warning " href="{{ url('/aprobar_lote')}}">Aprobación de Asistencia en Lote <i class="fa fa-database"></i></a>
     <br></br>
     <div class="box box-success">
         <div class="box-header with-border">

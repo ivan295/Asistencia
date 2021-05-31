@@ -67,27 +67,28 @@ class AsistenciaController extends Controller
     $horaf = $data->format('H:i:s');
     $fecha = $data->format('Y-m-d');
 
-    function getIP() {
-        if (isset($_SERVER)) {
-            if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }else {
-             return $_SERVER['REMOTE_ADDR'];
+        function getIP() {
+            if (isset($_SERVER)) {
+                if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                    return $_SERVER['HTTP_X_FORWARDED_FOR'];
+                }else {
+                    return $_SERVER['REMOTE_ADDR'];
+                }
+                }else {
+                if (isset($GLOBALS['HTTP_SERVER_VARS']['HTTP_X_FORWARDER_FOR'])) {
+                    return $GLOBALS['HTTP_SERVER_VARS']['HTTP_X_FORWARDED_FOR'];
+                }else {
+                return $GLOBALS['HTTP_SERVER_VARS']['REMOTE_ADDR'];
+                }
+            }
         }
-        }else {
-        if (isset($GLOBALS['HTTP_SERVER_VARS']['HTTP_X_FORWARDER_FOR'])) {
-            return $GLOBALS['HTTP_SERVER_VARS']['HTTP_X_FORWARDED_FOR'];
-         }else {
-          return $GLOBALS['HTTP_SERVER_VARS']['REMOTE_ADDR'];
-        }
-        }
-    }
         $marc = new Reloj;
         // -------------ingreso-----------------
         if($request->btnregistro == "Ingreso"){
             $request->validate([
                 'id_modalidad' => 'required|numeric',
                 ]);
+
             $marc->fecha = $fecha;
             $marc->hora_ingreso = $horaf;
             $marc->id_modalidad_ingreso = $request->id_modalidad;
@@ -101,11 +102,23 @@ class AsistenciaController extends Controller
             $ip->fecha= $fecha;
             $ip->hora = $horaf;
             $ip->ip = getIP();
+            // ------------ ingresar lugar ---------------
+            $mod = \DB::table('tableip')
+            ->where('tableip.ip','=',getIP())
+            ->select('tableip.ip')
+            ->first();
+            if(empty($mod)){
+                $ip->lugar_marcacion = 'out'; //fuera de la institucion
+            }else{
+                $ip->lugar_marcacion = 'in'; //dentro de la institucion
+            }
+            // ------------ fin de ingreso lugar ------------------
             $ip->id_reloj = $marc->id;
             $ip->save();
             return redirect('/asistencia')->with('marcar','ok');
         // -----------------descanso--------------------
         }elseif($request->btnregistro == "Descanso"){
+
             $marc= Reloj::find($request->id_reloj);
             $marc->hora_descanso = $horaf;
             $marc->id_estado_asistencia = 2;
@@ -116,9 +129,21 @@ class AsistenciaController extends Controller
             $ip->fecha= $fecha;
             $ip->hora = $horaf;
             $ip->ip = getIP();
+              // ------------ ingresar lugar ---------------
+              $mod = \DB::table('tableip')
+              ->where('tableip.ip','=',getIP())
+              ->select('tableip.ip')
+              ->first();
+              if(empty($mod)){
+                  $ip->lugar_marcacion = 'out';
+              }else{
+                  $ip->lugar_marcacion = 'in';
+              }
+              // ------------ fin de ingreso lugar ------------------
             $ip->id_reloj = $marc->id;
             $ip->save();
             return redirect('/asistencia')->with('marcar','ok');
+
         // ----------------reanudar---------------------
         }elseif($request->btnregistro == "Reanudar"){
             $request->validate([
@@ -135,11 +160,23 @@ class AsistenciaController extends Controller
             $ip->fecha= $fecha;
             $ip->hora = $horaf;
             $ip->ip = getIP();
+             // ------------ ingresar lugar ---------------
+             $mod = \DB::table('tableip')
+             ->where('tableip.ip','=',getIP())
+             ->select('tableip.ip')
+             ->first();
+             if(empty($mod)){
+                 $ip->lugar_marcacion = 'out';
+             }else{
+                 $ip->lugar_marcacion = 'in';
+             }
+             // ------------ fin de ingreso lugar ------------------
             $ip->id_reloj = $marc->id;
             $ip->save();
             return redirect('/asistencia')->with('marcar','ok');
         // ------------------finalizar-------------------
         }elseif($request->btnregistro == "Finalizado"){
+            
             $marc= Reloj::find($request->id_reloj);
             $marc->hora_salida = $horaf;
             $marc->id_estado_asistencia = 4;
@@ -150,9 +187,24 @@ class AsistenciaController extends Controller
             $ip->fecha= $fecha;
             $ip->hora = $horaf;
             $ip->ip = getIP();
+            // ------------ ingresar lugar ---------------
+             $mod = \DB::table('tableip')
+             ->where('tableip.ip','=',getIP())
+             ->select('tableip.ip')
+             ->first();
+             if(empty($mod)){
+                 $ip->lugar_marcacion = 'out';
+             }else{
+                 $ip->lugar_marcacion = 'in';
+             }
+            // ------------ fin de ingreso lugar ------------------
             $ip->id_reloj = $marc->id;
             $ip->save();
             return redirect('/asistencia')->with('marcar','ok');
         }
     }
+
+    public function VerAsistencia(){}
+
+
 }
