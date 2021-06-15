@@ -7,8 +7,13 @@ use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Type_usersController;
 use App\Http\Controllers\DireccionIpController;
-use App\Http\Controllers\EstadoAsistenciaController;
-
+use App\Http\Controllers\EstadoAsistenciaController; 
+use App\Http\Controllers\DireccionController;
+use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ModeloController;
+use App\Http\Controllers\ProcesadorController;
+use App\Http\Controllers\MemoriaRamController;
+use App\Http\Controllers\SistemaOperativoController;
 
  Route::get('/', function () {
     return Redirect::to('/login');  
@@ -24,12 +29,35 @@ Route::post('/edificio_edit/{id}',[BuildingController::class, 'edit']);
 Route::put('/edificio_update/{id}',[BuildingController::class, 'update']);
 Route::delete('/edificio_remove/{id}',[BuildingController::class, 'destroy']);
 
+// ---------------------------- Direccion ---------------------------
+Route::resource('/direccion', DireccionController::class);
+
+// ---------------------------- Marcas ---------------------------
+Route::resource('/marca', MarcaController::class);
+Route::get('/getmarca', [MarcaController::class,'get_marcas']);
+
+//---------------------------- Modelos ----------------------------
+Route::resource('/modelo', ModeloController::class);
+Route::get('/getmodelo',[ModeloController::class, 'get_modelos']);
+
+//--------------------------- Procesador -----------------------
+Route::resource('/procesador', ProcesadorController::class);
+Route::get('/getprocesador',[ProcesadorController::class, 'get_procesador']);
+
+//--------------------------- memoria ram -------------------
+Route::resource('/memoria_ram', MemoriaRamController::class);
+Route::get('/getram', [MemoriaRamController::class, 'get_ram']);
+
+//---------------------------- sistemas operativos -----------------------
+Route::resource('/sistema_operativo', SistemaOperativoController::class);
+Route::get('/getso', [SistemaOperativoController::class,'get_so']);
 // -------------------------- departamento ----------------------------
 Route::get('/departamento', [DepartmentController::class,'index']);
 Route::post('/departamento_create',[DepartmentController::class,'store']);
 Route::post('/departamento_edit/{id}',[DepartmentController::class, 'edit']);
 Route::put('departamento_update/{id}',[DepartmentController::class, 'update']);
 Route::delete('/departamento_remove/{id}',[DepartmentController::class, 'destroy']);
+Route::get('/getdir',[DepartmentController::class, 'getdirec']);
 
 // -------------------------- Asignar direccion ip --------------------------
 // Route::get('/direccion_ip', [DireccionIpController::class,'index']);
@@ -54,8 +82,11 @@ Route::post('/asistencia_create', [AsistenciaController::class, 'store']);
 
 // ----------------------- datos funcionario --------------------------
 Route::get('/funcionario' , [FuncionarioController::class,'index']);
-Route::get('/funcionario_edit',[FuncionarioController::class,'edit']);
-Route::post('/funcionario_update',[FuncionarioController::class,'update']);
+Route::get('/funcionario_edit', [FuncionarioController::class,'edit']);
+Route::post('/funcionario_update', [FuncionarioController::class,'update']);
+Route::get('/funselect_dep/{vard}', [FuncionarioController::class,'select']);
+Route::get('/getuser/{id}',[FuncionarioController::class,'getusuarios']);
+
 // -------------------------------user profile----------------------------
 Route::get('/user_profile' , [FuncionarioController::class,'profile']); //ver datos
 Route::post('/change_password' , [FuncionarioController::class,'change']);

@@ -19,6 +19,7 @@ class BuildingController extends Controller
         $newedificio = new Building;
         $newedificio->descripcion = $request->edificio;
         $newedificio->direccion = $request->direccion;
+        $newedificio->estado_eliminado = 'False';
         $newedificio->save();
         return redirect('/edificio');
 

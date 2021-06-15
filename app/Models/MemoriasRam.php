@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Building extends Model
+class MemoriasRam extends Model
 {
     use HasFactory;
-    protected $table = 'building';
-    protected $fillable = ['descripcion', 'direccion', 'estado_eliminado'];
-
-
+    protected $table = 'memoria_ram';
+    protected $fillable = ['capacidad', 'tecnologia', 'velocidad'];
 }

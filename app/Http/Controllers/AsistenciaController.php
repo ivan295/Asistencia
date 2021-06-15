@@ -82,6 +82,7 @@ class AsistenciaController extends Controller
                 }
             }
         }
+        
         $marc = new Reloj;
         // -------------ingreso-----------------
         if($request->btnregistro == "Ingreso"){
@@ -103,14 +104,15 @@ class AsistenciaController extends Controller
             $ip->hora = $horaf;
             $ip->ip = getIP();
             // ------------ ingresar lugar ---------------
-            $mod = \DB::table('tableip')
+            $place = \DB::table('tableip')
+            ->join('building','building.id','=','tableip.id_edificio')
             ->where('tableip.ip','=',getIP())
-            ->select('tableip.ip')
+            ->select('tableip.ip','building.descripcion as edificio')
             ->first();
-            if(empty($mod)){
-                $ip->lugar_marcacion = 'out'; //fuera de la institucion
+            if(empty($place)){
+                $ip->lugar_marcacion = 'externa'; //fuera de la institucion
             }else{
-                $ip->lugar_marcacion = 'in'; //dentro de la institucion
+                $ip->lugar_marcacion = $place->edificio; //dentro de la institucion
             }
             // ------------ fin de ingreso lugar ------------------
             $ip->id_reloj = $marc->id;
@@ -130,16 +132,17 @@ class AsistenciaController extends Controller
             $ip->hora = $horaf;
             $ip->ip = getIP();
               // ------------ ingresar lugar ---------------
-              $mod = \DB::table('tableip')
-              ->where('tableip.ip','=',getIP())
-              ->select('tableip.ip')
-              ->first();
-              if(empty($mod)){
-                  $ip->lugar_marcacion = 'out';
-              }else{
-                  $ip->lugar_marcacion = 'in';
-              }
-              // ------------ fin de ingreso lugar ------------------
+            $place = \DB::table('tableip')
+            ->join('building','building.id','=','tableip.id_edificio')
+            ->where('tableip.ip','=',getIP())
+            ->select('tableip.ip','building.descripcion as edificio')
+            ->first();
+            if(empty($place)){
+                $ip->lugar_marcacion = 'externa'; //fuera de la institucion
+            }else{
+                $ip->lugar_marcacion = $place->edificio; //dentro de la institucion
+            }
+            // ------------ fin de ingreso lugar ------------------
             $ip->id_reloj = $marc->id;
             $ip->save();
             return redirect('/asistencia')->with('marcar','ok');
@@ -160,17 +163,18 @@ class AsistenciaController extends Controller
             $ip->fecha= $fecha;
             $ip->hora = $horaf;
             $ip->ip = getIP();
-             // ------------ ingresar lugar ---------------
-             $mod = \DB::table('tableip')
-             ->where('tableip.ip','=',getIP())
-             ->select('tableip.ip')
-             ->first();
-             if(empty($mod)){
-                 $ip->lugar_marcacion = 'out';
-             }else{
-                 $ip->lugar_marcacion = 'in';
-             }
-             // ------------ fin de ingreso lugar ------------------
+            // ------------ ingresar lugar ---------------
+            $place = \DB::table('tableip')
+            ->join('building','building.id','=','tableip.id_edificio')
+            ->where('tableip.ip','=',getIP())
+            ->select('tableip.ip','building.descripcion as edificio')
+            ->first();
+            if(empty($place)){
+                $ip->lugar_marcacion = 'externa'; //fuera de la institucion
+            }else{
+                $ip->lugar_marcacion = $place->edificio; //dentro de la institucion
+            }
+            // ------------ fin de ingreso lugar ------------------
             $ip->id_reloj = $marc->id;
             $ip->save();
             return redirect('/asistencia')->with('marcar','ok');
@@ -188,15 +192,16 @@ class AsistenciaController extends Controller
             $ip->hora = $horaf;
             $ip->ip = getIP();
             // ------------ ingresar lugar ---------------
-             $mod = \DB::table('tableip')
-             ->where('tableip.ip','=',getIP())
-             ->select('tableip.ip')
-             ->first();
-             if(empty($mod)){
-                 $ip->lugar_marcacion = 'out';
-             }else{
-                 $ip->lugar_marcacion = 'in';
-             }
+            $place = \DB::table('tableip')
+            ->join('building','building.id','=','tableip.id_edificio')
+            ->where('tableip.ip','=',getIP())
+            ->select('tableip.ip','building.descripcion as edificio')
+            ->first();
+            if(empty($place)){
+                $ip->lugar_marcacion = 'externa'; //fuera de la institucion
+            }else{
+                $ip->lugar_marcacion = $place->edificio; //dentro de la institucion
+            }
             // ------------ fin de ingreso lugar ------------------
             $ip->id_reloj = $marc->id;
             $ip->save();
@@ -204,7 +209,12 @@ class AsistenciaController extends Controller
         }
     }
 
-    public function VerAsistencia(){}
+    public function VerAsistencia(){
+
+        return view('adminlte::misregistros');
+
+
+    }
 
 
 }

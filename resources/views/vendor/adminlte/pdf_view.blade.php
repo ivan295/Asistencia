@@ -156,11 +156,11 @@ function convertir ($fecha) {
                         <td>{{convertir($fdata->fecha)}}</td>
                         <td>{{$fdata->hora_ingreso}}</td>
                         <td>{{$fdata->modalidad_ingreso}}</td>
-                        <td>mercado municipal</td>
+                        <td>{{$fdata->lugar_ingreso}}</td>
                         <!-- ---------hora descanso-----------  -->
                         @if($fdata->hora_descanso != '')
                         <td>{{$fdata->hora_descanso}}</td>
-                        <td>palacio municipal</td>
+                        <td>{{$fdata->lugar_descanso}}</td>
                         @else
                         <td>Sin registro</td>
                         @endif
@@ -168,16 +168,17 @@ function convertir ($fecha) {
                         <!-- ---------------hora reanudacion------------------- -->
                         @if($fdata->hora_reanudacion != '')
                         <td>{{$fdata->hora_reanudacion}}</td>
+                        <td>{{$fdata->modalidad_reanudacion}}</td>
+                        <td>{{$fdata->lugar_reanudacion}}</td>
                         @else
                         <td>Sin registro</td>
                         @endif
                         <!-- ------------------------------------------------  -->
-                        <td>{{$fdata->modalidad_reanudacion}}</td>
-                        <td>camal municipal</td>
+                        
                         <!-- -----------------hora de salida-----------------  -->
                         @if($fdata->hora_salida != '')
                         <td>{{$fdata->hora_salida}}</td>
-                        <td>biblioteca municipal</td>
+                        <td>{{$fdata->lugar_salida}}</td>
                         @else
                         <td>Sin registro</td>
                         @endif

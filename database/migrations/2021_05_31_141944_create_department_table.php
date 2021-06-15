@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableipTable extends Migration
+class CreateDepartmentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateTableipTable extends Migration
      */
     public function up()
     {
-        Schema::create('tableip', function (Blueprint $table) {
+        Schema::create('department', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ip');
-            $table->string('observacion')->nullable();
+            $table->string('descripcion');
+            $table->string('direccion')->nullable();
             $table->boolean('estado_eliminado')->nullable();
             $table->timestamps();
 
+            $table->bigInteger('id_direccion')->unsigned()->index()->nullable();
+            $table->foreign('id_direccion')->references('id')->on('direcciones');
+
             $table->bigInteger('id_edificio')->unsigned()->index()->nullable();
             $table->foreign('id_edificio')->references('id')->on('building');
-
-            $table->bigInteger('id_departamento')->unsigned()->index()->nullable();
-            $table->foreign('id_departamento')->references('id')->on('department');
 
         });
     }
@@ -36,6 +36,6 @@ class CreateTableipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tableip');
+        Schema::dropIfExists('department');
     }
 }

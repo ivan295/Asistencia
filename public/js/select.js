@@ -12,3 +12,8 @@ function consultar_tipouser() {
     var dato = document.getElementById('consult_tipouser').value;
     document.getElementById('id_tipouser').value = dato;
 }
+
+function consultar_direccion() {
+    var dato = document.getElementById('consult_direccion').value;
+    document.getElementById('direccion_id').value = dato;
+}

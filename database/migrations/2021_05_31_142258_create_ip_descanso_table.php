@@ -15,8 +15,8 @@ class CreateIpDescansoTable extends Migration
     {
         Schema::create('ip_descanso', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ip',11);
-            $table->string('lugar_marcacion',5);
+            $table->string('ip',15);
+            $table->string('lugar_marcacion',50);
             $table->date('fecha');
             $table->time('hora');
             $table->timestamps();

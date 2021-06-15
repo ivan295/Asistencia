@@ -103,4 +103,31 @@ class FuncionarioController extends Controller
         $edit_data->save();
         return redirect('/user_profile'); 
     }
+
+    public function select($vard){
+        // dd($vard);
+        // if ($request->ajax()) {
+            $depar = \DB::table('department')
+            ->join('building','building.id','=','department.id_edificio')
+            ->select('department.id','department.descripcion as departamento')
+            ->where('id_edificio','=',$vard)
+            ->get();
+            //return response()->json($depar);
+            // return view('adminlte::funcionario',compact('depar'));
+             return response()->json($depar);
+
+        // }
+        // return view('adminlte::funcionario',compact('depar'));
+        // dd($depar);
+
+    }
+
+    public function getusuarios($id){
+        $getus= \DB::table('users')
+        ->select('users.id','users.name','users.apellido')
+        ->where('id_departamento','=',$id)
+        ->get();
+        dd($getus);
+        return response()->json($getus);
+    }
 }

@@ -17,7 +17,6 @@ class CreateAssistanceStatusTable extends Migration
             $table->bigIncrements('id');
             $table->string('descripcion');
             $table->timestamps();
-            
 
         });
     }

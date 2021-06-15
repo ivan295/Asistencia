@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('sexo',15)->nullable();
             $table->string('email')->unique()->nullable();
-            //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('estado_eliminado')->nullable();
             $table->timestamps();
@@ -36,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->foreign('id_departamento')->references('id')->on('department');
 
         });
+
     }
 
     /**

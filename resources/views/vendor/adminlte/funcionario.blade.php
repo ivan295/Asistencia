@@ -79,21 +79,10 @@
       						<small class="text-danger">{{$message}}</small>
       						@enderror
                     	</div>
-						<div class="col-md-6">
-                        	<div class="form-group">
-                            	<label>Departamento</label>
-                                	<select class="form-control"  id="consult_departamento" onchange="consultar_departamento()" data-live-search="true">
-                                    	<option value="0">Seleccionar Departamento</option>
-                                    	<?php $dep = DB::table('department')->get(); ?>
-                                    	@foreach($dep as $departamento)
-                                    	<option value="<?php  echo $departamento->id ; ?>"> <?php echo $departamento->descripcion; ?> </option>
-                                    	@endforeach
-                                	</select>
-                        	</div>
-                        	<input type="hidden" id="id_departamento" name="departamento">
-							@error('departamento')
-      						<small class="text-danger">{{$message}}</small>
-      						@enderror
+						<div class="col-md-6" id="selectdep">
+						@error('departamento')
+      			<small class='text-danger'>{{$message}}</small>
+      			@enderror
                     	</div>
 						<div class="col-md-6">
                         	<div class="form-group">
@@ -150,4 +139,7 @@
 </form>
 
 <script src="{{ asset('/js/select.js') }}" defer></script>
+<script src="{{ asset('/js/cargardep.js') }}" defer></script>
+
+
 @endsection

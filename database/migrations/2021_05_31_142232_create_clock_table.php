@@ -37,6 +37,7 @@ class CreateClockTable extends Migration
             $table->foreign('id_estado_registro')->references('id')->on('register_status');
 
         });
+
     }
 
     /**

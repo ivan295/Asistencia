@@ -42,16 +42,28 @@
             <li><a href="{{ url('asistencia') }}"><i class='fa fa-clock-o'></i> <span>Registro de Asistencia</span></a></li>
             <li><a href="{{ url('report_index') }}"><i class='fa fa-file-pdf-o'></i> <span>Reporte de Asistencia</span></a></li>
             <!-- <li><a href="{{ url('funcionario') }}"><i class='fa fa-user'></i> <span>Datos de Funcionario</span></a></li> -->
-            <li><a href="{{ url('estado_registro_view') }}"><i class='fa fa-pencil'></i> <span>Aprobación de Asistencia</span></a></li> 
-            
+            <li class="treeview">
+                <a href="#"><i class='fa fa-cogs'></i> <span>Aprobación de Asistencia</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                <li><a href="{{ url('estado_registro_view') }}"><i class='fa fa-pencil'></i> <span>Aprobación Individual</span></a></li> 
+                <li><a href="{{ url('aprobar_lote') }}"><i class='fa fa-database'></i> <span>Aprobación en Lote</span></a></li>
+                </ul>
+            </li>            
             
             <li class="treeview">
                 <a href="#"><i class='fa fa-cogs'></i> <span>Configuracion</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('edificio') }}"><i class='fa fa-institution'></i> <span>Crear Edificio</span></a></li>
-                    <li><a href="{{ url('departamento') }}"><i class='fa fa-suitcase'></i> <span>Crear Departamento</span></a></li>
                     <li><a href="{{ url('type_users') }}"><i class='fa fa-users'></i> <span>Crear Tipo de Usuario</span></a></li>
-                    <li><a href="{{ url('direccion_ip') }}"><i class='fa fa-desktop'></i> <span>Agregar IP</span></a></li>
+                    <li><a href="{{ url('edificio') }}"><i class='fa fa-institution'></i> <span>Crear Edificio</span></a></li>
+                    <li><a href="{{ url('direccion') }}"><i class='fa fa-diamond'></i> <span>Crear Dirección</span></a></li>
+                    <li><a href="{{ url('departamento') }}"><i class='fa fa-suitcase'></i> <span>Crear Departamento</span></a></li>
+                    <!-- <li><a href="{{ url('direccion_ip') }}"><i class='fa fa-desktop'></i> <span>Agregar IP</span></a></li> -->
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-cogs'></i> <span>TIC</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('direccion_ip') }}"><i class='fa fa-desktop'></i> <span>Agregar Nuevo Equipo</span></a></li>
                 </ul>
             </li>
         @endif
@@ -77,7 +89,6 @@
             <li><a href="{{ url('asistencia') }}"><i class='fa fa-clock-o'></i> <span>Registro de Asistencia</span></a></li>
             <li><a href="{{ url('report_index') }}"><i class='fa fa-file-pdf-o'></i> <span>Reporte de Asistencia</span></a></li>
             <li><a href="{{ url('ver_asistencia') }}"><i class='fa fa-desktop'></i> <span>Mis registros</span></a></li>
-            <!-- <li><a href="{{ url('funcionario') }}"><i class='fa fa-user'></i> <span>Datos de Funcionario</span></a></li> -->
         @endif
         </ul>
     </section>

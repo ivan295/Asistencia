@@ -45,6 +45,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.js" defer></script>
+    <!-- <script src="https://code.jquery.com/jquery-1.9.1.js" defer></script> -->
+
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" defer></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js" defer></script>
     <script src=" https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js" defer></script>

@@ -10,20 +10,14 @@ use App\Models\DireccionIP;
 class DireccionIpController extends Controller
 {
     public function index(){
-        $ip = \DB::table('tableip')
-        ->join('building','building.id','=','tableip.id_edificio')
-        ->join('department','department.id','=','tableip.id_departamento')
-        ->select('tableip.*','building.descripcion as edificio','department.descripcion as departamento')
-        ->where('tableip.estado_eliminado','=','FALSE')
-        ->get();
 
-        // dd($ip);
+      
 
-        return view('adminlte::direccionip.newIP',compact('ip'));
+        return view('adminlte::direccionip.newEquipo');
     }
 
     public function store(Request $request){
-
+        dd($request);
         $request->validate([
             'ip'=>'required|unique:tableip,ip',
             'edificio'=>'required',

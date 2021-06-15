@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIpReanudacionTable extends Migration
+class CreateIpIngresoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateIpReanudacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('ip_reanudacion', function (Blueprint $table) {
+        Schema::create('ip_ingreso', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ip',11);
-            $table->string('lugar_marcacion',5);
+            $table->string('ip',15);
+            $table->string('lugar_marcacion',50);
             $table->date('fecha');
             $table->time('hora');
             $table->timestamps();
@@ -34,6 +34,6 @@ class CreateIpReanudacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ip_reanudacion');
+        Schema::dropIfExists('ip_ingreso');
     }
 }
