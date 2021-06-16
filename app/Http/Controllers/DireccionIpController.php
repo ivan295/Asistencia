@@ -18,20 +18,6 @@ class DireccionIpController extends Controller
 
     public function store(Request $request){
         dd($request);
-        $request->validate([
-            'ip'=>'required|unique:tableip,ip',
-            'edificio'=>'required',
-            'departamento'=>'required'
-            ]);
-
-        $newip = new DireccionIP;
-        $newip->ip = $request->ip;
-        $newip->id_edificio = $request->edificio;
-        $newip->id_departamento = $request->departamento;
-        $newip->observacion = $request->observacion;
-        $newip->estado_eliminado = 'FALSE';
-        $newip->save();
-        return redirect('/direccion_ip')->with('ip','ok');
     }
 
     public function edit($id){

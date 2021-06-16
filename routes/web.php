@@ -14,6 +14,7 @@ use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\ProcesadorController;
 use App\Http\Controllers\MemoriaRamController;
 use App\Http\Controllers\SistemaOperativoController;
+use App\Http\Controllers\NewEquipoController;
 
  Route::get('/', function () {
     return Redirect::to('/login');  
@@ -51,6 +52,9 @@ Route::get('/getram', [MemoriaRamController::class, 'get_ram']);
 //---------------------------- sistemas operativos -----------------------
 Route::resource('/sistema_operativo', SistemaOperativoController::class);
 Route::get('/getso', [SistemaOperativoController::class,'get_so']);
+
+// ------------------------------- nuevo equipo ------------------------
+Route::resource('/newequipo', NewEquipoController::class);
 // -------------------------- departamento ----------------------------
 Route::get('/departamento', [DepartmentController::class,'index']);
 Route::post('/departamento_create',[DepartmentController::class,'store']);

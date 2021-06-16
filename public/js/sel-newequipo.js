@@ -1,29 +1,24 @@
-$(document).ready(function(){
-    
+$(document).ready(function(){    
     recargardep();
-    // recargaruser();
-    $('#consult_edificio').change(function(){
+        $('#consult_edificio').change(function(){
         recargardep();
     });
-    $('#consult_departamento').change(function(){
-        recargaruser();
-    });
-})
+});
 
 function recargardep(){
+
 var vard = $('#consult_edificio').val();
 
 $.get('funselect_dep/'+vard+'',function (data){
-    
+
     // $('#selectdep').empty();
-    $("#selectdep").append(
-        "<label>Departamento</label>\
-            <select class='form-control' id='consult_departamento' name='sel-dep'>\
-            <option>Seleccionar Departamento</option>\
-            </select>"
-    );
+    // $("#selectdep").append(
+    //     "<label>Departamento</label>\
+    //         <select class='form-control' id='consult_departamento' name='sel-dep'>\
+    //         <option>Seleccionar Departamento</option>\
+    //         </select>"
+    // );
     $.each(data,function(i,item) {
-        debugger
         $("#consult_departamento").append(
         "<option value="+item.id+">"+item.departamento+"</option>"
         );
@@ -31,15 +26,12 @@ $.get('funselect_dep/'+vard+'',function (data){
 });
 }
 
-
-
-
 $.get('getmarca',function (data){
 
     $("#sel-marca-equipo").append(
         "<label>Marca del equipo</label>\
         <div class='input-group'>\
-            <select class='form-control' id='sel-marca' name='sel-marca'>\
+            <select class='form-control' id='sel-marca' name='selmarca'>\
                 <option>Seleccionar Marca</option>\
             </select>\
             <span class='input-group-btn'>\
@@ -60,7 +52,7 @@ $.get('getmodelo',function (data){
     $("#sel-modelo-equipo").append(
         " <label>Modelo del equipo</label>\
         <div class='input-group '>\
-            <select class='form-control' id='sel-modelo' name='sel-modelo'>\
+            <select class='form-control' id='sel-modelo' name='selmodelo'>\
                 <option >Seleccionar Modelo</option>\
             </select>\
             <span class='input-group-btn'>\
@@ -81,7 +73,7 @@ $.get('getprocesador',function (data){
     $("#sel-procesador-equipo").append(
         " <label>Procesador</label>\
         <div class='input-group'>\
-            <select class='form-control' id='sel-proce' name='sel-procesador'>\
+            <select class='form-control' id='sel-proce' name='selprocesador'>\
                 <option>Seleccionar Procesador</option>\
             </select>\
             <span class='input-group-btn'>\
@@ -103,7 +95,7 @@ $.get('getram',function (data){
     $("#sel-memoriaRam-equipo").append(
         " <label>Memoria RAM</label>\
         <div class='input-group'>\
-        <select class='form-control' id='sel-ram' name='sel-ram'>\
+        <select class='form-control' id='sel-ram' name='selram'>\
                 <option >Seleccionar RAM</option>\
             </select>\
             <span class='input-group-btn'>\
@@ -124,7 +116,7 @@ $.get('getso',function (data){
     $("#so-equipo").append(
         "  <label>Sistema Operativo</label>\
         <div class='input-group'>\
-            <select class='form-control' id='sel-so' name='sel-so'>\
+            <select class='form-control' id='sel-so' name='selso'>\
                 <option >Seleccionar Sistema Operativo</option>\
             </select>\
             <span class='input-group-btn'>\
@@ -139,22 +131,23 @@ $.get('getso',function (data){
     });
 });
 
-function recargaruser(){
-    var varia = $('#consult_departamento').val();
-    // varia=1;    
-
+$('#consult_departamento').change(function(){
+   
+        var varia = $('#consult_departamento').val();
     $.get('getuser/'+varia+'',function (data){
-        // $('#responsable').empty();
-        $("#responsable").append(
+
+        $('#selresponsable').empty();
+        $("#selresponsable").append(
             "<label>Usuario responsable del equipo</label>\
-            <select class='form-control' id='selec-responsable' name='sel-responsable'>\
+            <select class='form-control' id='selec-responsable' name='selresponsable'>\
                 <option>Seleccionar Responsable</option>\
             </select>"
         );
         $.each(data,function(i,item) {
             $("#selec-responsable").append(
-            "<option value="+item.id+">"+item.name+" / "+item.apellido+"</option>"
+            "<option value="+item.id+">"+item.name+" "+item.apellido+"</option>"
             );
         });
     });
-}
+
+});

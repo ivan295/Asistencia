@@ -13,7 +13,7 @@ Dirección IP
 
 @include('adminlte::alerts.exito')
 <br>
-<form method="post" action="{{ route('direccion_ip.store')}}">
+<form method="post" action="{{ route('newequipo.store')}}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="col-md-14">
         <div class="box box-success">
@@ -50,23 +50,28 @@ Dirección IP
                     </div>
 
                     <div class="col-md-6" id="selectdep">
-            
+                        
+                        <label>Departamento</label>
+                        <select class='form-control' id='consult_departamento' name='seldep'>
+                            <option>Seleccionar Departamento</option>
+                        </select>
+                       
                     </div>
                     <div class="col-md-6" id="sel-marca-equipo">
-                       
+
                     </div>
                     <div class="col-md-6" id="sel-modelo-equipo">
-                       
+
                     </div>
                     <div class="col-md-6" id="sel-procesador-equipo">
-                        
+
                     </div>
                     <div class="col-md-6" id="sel-memoriaRam-equipo">
-                        
+
                     </div>
                     <div class="col-md-6">
                         <label>Almacenamiento</label>
-                        <select class="form-control" name="sel-almacenamiento">
+                        <select class="form-control" name="selalmacenamiento">
                             <option value="">Seleccionar Almacenamiento</option>
                             <option value="SDD">Unidad de estado sólido</option>
                             <option value="HDD">Disco Duro</option>
@@ -80,7 +85,7 @@ Dirección IP
                         <label for="new_pass">Espacio de Almacenamiento</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-institution"></i></span>
-                            <input type="text" class="form-control" name="espacio-alm" id="espacio-alm"
+                            <input type="text" class="form-control" name="espacioalm" id="espacio-alm"
                                 placeholder="Espacio de Almacenamiento">
                             @error('espacio-alm')
                             <small class="text-danger">{{$message}}</small>
@@ -88,10 +93,13 @@ Dirección IP
                         </div>
                     </div>
                     <div class="col-md-6" id="so-equipo">
-                       
+
                     </div>
-                    <div class="col-md-6" id="responsable">
-                        
+                    <div class="col-md-6" id="selresponsable">
+                        <label>Usuario responsable del equipo</label>
+                        <select class='form-control' id='selec-responsable' name='selresponsable'>
+                            <option>Seleccionar Responsable</option>
+                        </select>
                         @error('sel-responsable')
                         <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -100,7 +108,7 @@ Dirección IP
                         <label for="new_pass">Nombre del equipo</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
-                            <input type="text" class="form-control" name="nombre-equipo" id="nombre-equipo"
+                            <input type="text" class="form-control" name="nombreequipo" id="nombre-equipo"
                                 placeholder="Nombre del equipo">
                             @error('nombre-equipo')
                             <small class="text-danger">{{$message}}</small>
@@ -111,7 +119,7 @@ Dirección IP
                         <label for="new_pass">Código CPU</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
-                            <input type="text" class="form-control" name="cod-cpu" id="cod-cpu"
+                            <input type="text" class="form-control" name="codcpu" id="cod-cpu"
                                 placeholder="Nombre del equipo">
                             @error('nombre-equipo')
                             <small class="text-danger">{{$message}}</small>
@@ -120,7 +128,7 @@ Dirección IP
                     </div>
                     <div class="col-md-6">
                         <label>Estado del equipo</label>
-                        <select class="form-control" name="sel-estado">
+                        <select class="form-control" name="selestado">
                             <option value="">Seleccionar Estado del equipo</option>
                             <option value="bueno">Bueno</option>
                             <option value="regular">Regular</option>
@@ -168,8 +176,8 @@ Dirección IP
                                     placeholder="Nombre de la marca" required>
                             </div>
                             @error('marca')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -206,8 +214,8 @@ Dirección IP
                                     placeholder="Nombre del modelo" required>
                             </div>
                             @error('modelo')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -237,37 +245,37 @@ Dirección IP
                 <div class="modal-body">
                     <div class="box-body">
                         <div class="col-md-12">
-                            <label >Nombre del Procesador</label>
+                            <label>Nombre del Procesador</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" class="form-control" name="nameprocesador" id="nameprocesador"
                                     placeholder="Procesador, ejemplo corei3, corei5 " required>
                             </div>
                             @error('nameprocesador')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-12">
-                            <label >Frecuencia del procesador</label>
+                            <label>Frecuencia del procesador</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" class="form-control" name="frecuencia" id="frecuencia"
                                     placeholder="Frecuencia del procesador, ejemplo 3Ghz, 3.2Ghz" required>
                             </div>
                             @error('frecuencia')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-12">
-                            <label >Generación del procesador</label>
+                            <label>Generación del procesador</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" class="form-control" name="generacion" id="generacion"
                                     placeholder="Generación del procesador, ejemplo 10700, " required>
                             </div>
                             @error('generacion')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -297,37 +305,37 @@ Dirección IP
                 <div class="modal-body">
                     <div class="box-body">
                         <div class="col-md-12">
-                            <label >Capacidad de la memoria</label>
+                            <label>Capacidad de la memoria</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" class="form-control" name="capacidadmemor" id="capacidadmemor"
                                     placeholder="Capacidad de memoria, ejemplo 4GB, 8GB " required>
                             </div>
                             @error('capacidadmemor')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-12">
-                            <label >Tecnología de la memoria</label>
+                            <label>Tecnología de la memoria</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" class="form-control" name="tecnologia" id="tecnologia"
                                     placeholder="Tecnología, ejemplo DDR4, DDR3" required>
                             </div>
                             @error('tecnologia')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-12">
-                            <label >Velocidad</label>
+                            <label>Velocidad</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" class="form-control" name="velocidadRAM" id="velocidadRAM"
                                     placeholder="Velocidad de la memoria, ejemplo 3000Ghz, " required>
                             </div>
                             @error('velocidadRAM')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -364,8 +372,8 @@ Dirección IP
                                     placeholder="Nombre del sistema operativo" required>
                             </div>
                             @error('sistemaO')
-                                <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
                 </div>

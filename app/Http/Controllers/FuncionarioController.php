@@ -127,7 +127,6 @@ class FuncionarioController extends Controller
         ->select('users.id','users.name','users.apellido')
         ->where('id_departamento','=',$id)
         ->get();
-        dd($getus);
         return response()->json($getus);
     }
 }
