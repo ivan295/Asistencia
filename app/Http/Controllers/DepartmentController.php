@@ -18,15 +18,21 @@ class DepartmentController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request);
         $request->validate([
             'departamento' => 'required',
-            'edificio'=>'required',
-            'direccion'=>'required'
+            'rbox' => 'required',
+            'edificio'=>'required'
             ]);
+        
         $newdepartment = new Department;
         $newdepartment->descripcion = $request->departamento;
         $newdepartment->id_edificio = $request->edificio;
-        $newdepartment->id_direccion = $request->direccion;
+        if($request->rbox == 'si'){
+            $newdepartment->id_direccion = $request->seldir;
+        }else if($request->rbox == 'no'){
+            $newdepartment->id_direccion = 1;
+        }
         $newdepartment->direccion = $request->direccion_calle;
         $newdepartment->save();
         return redirect('/departamento')->with('departamento','ok');
@@ -41,5 +47,12 @@ class DepartmentController extends Controller
 
         // dd($editdepart);
         return view('adminlte::departamento.editdepartment',compact('editdepart'));
+    }
+
+    public function getdirec(){
+        $dep = \DB::table('direcciones')
+        ->where('estado_eliminado','!=','True')
+        ->get();
+        return response()->json($dep);
     }
 }
