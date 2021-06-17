@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableipTable extends Migration
+class CreateTableEquipoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTableipTable extends Migration
      */
     public function up()
     {
-        Schema::create('tableip', function (Blueprint $table) {
+        Schema::create('table_equipo', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ip');
-
-            $table->bigInteger('id_edificio')->unsigned()->index()->nullable();
-            $table->foreign('id_edificio')->references('id')->on('building');
 
             $table->bigInteger('id_departamento')->unsigned()->index()->nullable();
             $table->foreign('id_departamento')->references('id')->on('department');
@@ -26,8 +22,8 @@ class CreateTableipTable extends Migration
             $table->bigInteger('id_marca')->unsigned()->index()->nullable();
             $table->foreign('id_marca')->references('id')->on('marcas');
 
-            $table->string('almacenamiento');
-            $table->string('espacio_almacenamiento');
+            $table->string('almacenamiento')->nullable();
+            $table->string('espacio_almacenamiento')->nullable();
 
             $table->bigInteger('id_modelo')->unsigned()->index()->nullable();
             $table->foreign('id_modelo')->references('id')->on('modelos');
@@ -45,12 +41,13 @@ class CreateTableipTable extends Migration
             $table->foreign('id_responsable')->references('id')->on('users');
 
             $table->string('nombre_equipo');
-            $table->string('cod_cpu');
+            $table->string('cod_cpu')->nullable();
             $table->string('estado_equipo');
+            $table->string('tipo_equipo');
 
             $table->string('observacion')->nullable();
-            $table->boolean('estado_eliminado')->nullable();
-            $table->timestamps();  
+            $table->boolean('estado_eliminado');
+            $table->timestamps();
 
         });
     }
@@ -62,6 +59,6 @@ class CreateTableipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tableip');
+        Schema::dropIfExists('table_equipo');
     }
 }

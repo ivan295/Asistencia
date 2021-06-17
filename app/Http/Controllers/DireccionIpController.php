@@ -10,10 +10,8 @@ use App\Models\DireccionIP;
 class DireccionIpController extends Controller
 {
     public function index(){
-
-      
-
-        return view('adminlte::direccionip.newEquipo');
+        
+        return view('adminlte::direccionip.newEquipoRed');
     }
 
     public function store(Request $request){

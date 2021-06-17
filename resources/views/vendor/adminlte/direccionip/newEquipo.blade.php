@@ -23,6 +23,7 @@ Dirección IP
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-6">
+                    <input type="hidden"  name="tipoequipo" value="Computador">
                         <label for="new_pass">Dirección IP</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-institution"></i></span>

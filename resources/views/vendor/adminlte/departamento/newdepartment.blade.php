@@ -14,7 +14,7 @@ Departamento
 <form method="post" action="/departamento_create">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="modal fade" id="newdepart" tabindex="-1" data-backdrop="static" role="dialog"
-        aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false">
         <div class="modal-dialog" role="document">
             <!-- Modal content-->
             <div class="modal-content">

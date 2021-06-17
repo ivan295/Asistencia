@@ -63,7 +63,8 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-cogs'></i> <span>TIC</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('direccion_ip') }}"><i class='fa fa-desktop'></i> <span>Agregar Nuevo Equipo</span></a></li>
+                    <li><a href="{{ url('newequipo') }}"><i class='fa fa-desktop'></i> <span>Agregar Nuevo Computador</span></a></li>
+                    <li><a href="{{ url('direccion_ip') }}"><i class='fa fa-desktop'></i> <span>Nuevo Equipo de red</span></a></li>
                 </ul>
             </li>
         @endif

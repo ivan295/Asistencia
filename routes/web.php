@@ -55,6 +55,7 @@ Route::get('/getso', [SistemaOperativoController::class,'get_so']);
 
 // ------------------------------- nuevo equipo ------------------------
 Route::resource('/newequipo', NewEquipoController::class);
+Route::post('/equipo_red_create', [NewEquipoController::class,'createEred']);
 // -------------------------- departamento ----------------------------
 Route::get('/departamento', [DepartmentController::class,'index']);
 Route::post('/departamento_create',[DepartmentController::class,'store']);
@@ -62,6 +63,7 @@ Route::post('/departamento_edit/{id}',[DepartmentController::class, 'edit']);
 Route::put('departamento_update/{id}',[DepartmentController::class, 'update']);
 Route::delete('/departamento_remove/{id}',[DepartmentController::class, 'destroy']);
 Route::get('/getdir',[DepartmentController::class, 'getdirec']);
+
 
 // -------------------------- Asignar direccion ip --------------------------
 // Route::get('/direccion_ip', [DireccionIpController::class,'index']);
