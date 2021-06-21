@@ -1,6 +1,5 @@
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
-
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         @if (! Auth::guest())
@@ -19,7 +18,6 @@
                     <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('adminlte_lang::message.online') }}</a>
                 </div>
             </div>
-            
         @endif
 
         <!-- search form (Optional)
@@ -32,7 +30,6 @@
             </div>
         </form>
         .search form -->
-
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
         @if(Auth::user()->id_tipouser == 1)
@@ -63,7 +60,7 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-cogs'></i> <span>TIC</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('newequipo') }}"><i class='fa fa-desktop'></i> <span>Agregar Nuevo Computador</span></a></li>
+                    <li><a href="{{ url('newequipo') }}"><i class='fa fa-desktop'></i> <span>Nuevo Computador</span></a></li>
                     <li><a href="{{ url('direccion_ip') }}"><i class='fa fa-desktop'></i> <span>Nuevo Equipo de red</span></a></li>
                 </ul>
             </li>
@@ -92,6 +89,5 @@
             <li><a href="{{ url('ver_asistencia') }}"><i class='fa fa-desktop'></i> <span>Mis registros</span></a></li>
         @endif
         </ul>
-    </section>
-    
+    </section>    
 </aside>

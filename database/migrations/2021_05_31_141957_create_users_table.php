@@ -34,6 +34,9 @@ class CreateUsersTable extends Migration
             $table->bigInteger('id_departamento')->unsigned()->index()->nullable();
             $table->foreign('id_departamento')->references('id')->on('department');
 
+            $table->bigInteger('id_direccion')->unsigned()->index()->nullable();
+            $table->foreign('id_direccion')->references('id')->on('direcciones');
+
         });
 
     }

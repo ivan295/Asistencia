@@ -63,6 +63,18 @@
 				</div>
 				<div class="box-body">
 					<div class="row">
+						<div class="col-md-12" >
+							<label>Tipo de Usuario</label>
+                            <br>
+                            <input type="radio" id="rsi" name="rbox" value="si">
+                            <label>Jefe Departamental</label>
+                            <input type="radio" id="rno" name="rbox" value="no">
+                            <label>Funcionario</label>
+                            @error('rbox')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
+                            <br>
+						</div>
 						<div class="col-md-6">
                         	<div class="form-group">
                             	<label>Edificio</label>

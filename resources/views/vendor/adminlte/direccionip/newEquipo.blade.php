@@ -1,6 +1,6 @@
 @extends('adminlte::layouts.app')
 @section('htmlheader_title')
-Dirección IP
+Nuevo Equipo
 @endsection
 @section('main-content')
 
