@@ -24,5 +24,11 @@ class Type_usersController extends Controller
     public function edit($id){
         $tipo = TypeUsers::FindOrFail($id);
         return view('adminlte::editTypeuser',compact('tipo'));
+    } 
+
+    public function gettipoUsers(){
+        $alltip = \DB::table('type_users')
+        ->get();
+        return response()->json($alltip);
     }
 }

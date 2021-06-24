@@ -54,6 +54,8 @@
                     <li><a href="{{ url('edificio') }}"><i class='fa fa-institution'></i> <span>Crear Edificio</span></a></li>
                     <li><a href="{{ url('direccion') }}"><i class='fa fa-diamond'></i> <span>Crear Dirección</span></a></li>
                     <li><a href="{{ url('departamento') }}"><i class='fa fa-suitcase'></i> <span>Crear Departamento</span></a></li>
+                    <li><a href="{{ url('user') }}"><i class='fa fa-user'></i> <span>Nuevo Usuario</span></a></li>
+
                     <!-- <li><a href="{{ url('direccion_ip') }}"><i class='fa fa-desktop'></i> <span>Agregar IP</span></a></li> -->
                 </ul>
             </li>

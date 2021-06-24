@@ -39,5 +39,14 @@ class DireccionController extends Controller
         ->get();
         return response()->json($direcc);
     }
+
+    public function getdireccion($varia){
+        $direcc = \DB::table('direcciones')
+        ->where('estado_eliminado','=','FALSE')
+        ->where('id_edificio','=',$varia)
+        ->get();
+                // dd($direcc);
+        return response()->json($direcc);
+    }
     
 }

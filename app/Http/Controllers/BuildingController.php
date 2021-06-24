@@ -44,4 +44,10 @@ class BuildingController extends Controller
         return redirect('/edificio')->with('eliminar','ok'); //envio variables de sesion, necesita dos parametros, primero el nombre de la variable y segundo el mensaje
 
     }
+
+    public function GetEdificios(){
+        $alledif = \DB::table('building')
+        ->get();
+        return response()->json($alledif);
+    }
 }

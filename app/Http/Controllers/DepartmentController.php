@@ -55,4 +55,12 @@ class DepartmentController extends Controller
         ->get();
         return response()->json($dep);
     }
+
+    public function getdepart($varia){
+        $dep = \DB::table('department')
+        ->where('estado_eliminado','!=','True')
+        ->where('id_edificio','=',$varia)
+        ->get();
+        return response()->json($dep);
+    }
 }

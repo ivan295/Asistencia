@@ -15,6 +15,7 @@ use App\Http\Controllers\ProcesadorController;
 use App\Http\Controllers\MemoriaRamController;
 use App\Http\Controllers\SistemaOperativoController;
 use App\Http\Controllers\NewEquipoController;
+use App\Http\Controllers\UserController;
 
  Route::get('/', function () {
     return Redirect::to('/login');  
@@ -29,9 +30,12 @@ Route::post('/edificio_create',[BuildingController::class,'store']);
 Route::post('/edificio_edit/{id}',[BuildingController::class, 'edit']);
 Route::put('/edificio_update/{id}',[BuildingController::class, 'update']);
 Route::delete('/edificio_remove/{id}',[BuildingController::class, 'destroy']);
+Route::get('/getedificio',[BuildingController::class, 'GetEdificios']);
 
 // ---------------------------- Direccion ---------------------------
 Route::resource('/direccion', DireccionController::class);
+Route::get('/getdied/{varia}', [DireccionController::class, 'getdireccion']);
+
 
 // ---------------------------- Marcas ---------------------------
 Route::resource('/marca', MarcaController::class);
@@ -63,6 +67,8 @@ Route::post('/departamento_edit/{id}',[DepartmentController::class, 'edit']);
 Route::put('departamento_update/{id}',[DepartmentController::class, 'update']);
 Route::delete('/departamento_remove/{id}',[DepartmentController::class, 'destroy']);
 Route::get('/getdir',[DepartmentController::class, 'getdirec']);
+Route::get('/getdep/{varia}', [DepartmentController::class, 'getdepart']);
+
 
 
 // -------------------------- Asignar direccion ip --------------------------
@@ -79,6 +85,7 @@ Route::post('/type_users_create',[Type_usersController::class,'store']);
 Route::post('/type_users_edit/{id}',[Type_usersController::class, 'edit']);
 Route::put('/type_users_update/{id}',[Type_usersController::class, 'update']);
 Route::delete('/type_users_remove/{id}',[Type_usersController::class, 'destroy']);
+Route::get('/gettipo',[Type_usersController::class, 'gettipoUsers']);
 
 // -------------------- asistencia ---------------------------------
 Route::get('/asistencia', [AsistenciaController::class, 'index']);
@@ -111,5 +118,8 @@ Route::post('/array_check',[EstadoRegistroController::class,'arrayCheck']);
 
 // ---------------------------- registros ----------------------------------
 Route::get('/ver_asistencia',[AsistenciaController::class,'VerAsistencia']);
+
+// ------------------------------- nuevo usuario ----------------------------
+Route::resource('user', UserController::class);
 
 });
