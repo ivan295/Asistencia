@@ -67,26 +67,16 @@ Registro de Funcionario
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-md-12">
+
+                        <div class="col-md-6">
                             <label>Tipo de Usuario</label>
-                            <br>
-                            <div class="col-md-4">
-                                <input type="radio" id="rdirector" name="rbox" value="2">
-                                <label>Director</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="radio" id="rjefe" name="rbox" value="3">
-                                <label>Jefe Departamental</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="radio" id="rfuncionario" name="rbox" value="4">
-                                <label>Funcionario</label>
-                            </div>
-                            @error('rbox')
+                            <select class='form-control' id='seltipo' name='selectipouser'>
+                                <option value=''>Seleccionar Tipo de Usuario</option>
+                            </select>
+                            @error('selectipouser')
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
-                        <br>
                         <div class="col-md-6" id="selectedificio">
                             <label>Edificio</label>
                             <select class='form-control' id='seledificio' name='seledificio'>

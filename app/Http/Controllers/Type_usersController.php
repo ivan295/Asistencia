@@ -28,6 +28,7 @@ class Type_usersController extends Controller
 
     public function gettipoUsers(){
         $alltip = \DB::table('type_users')
+        ->where('id','!=',1)
         ->get();
         return response()->json($alltip);
     }
