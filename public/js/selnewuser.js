@@ -1,4 +1,7 @@
 // $('#selectedificio').empty();
+$(document).ready(function(){    
+    
+
 $.get('gettipo',function (data){
     $.each(data,function(i,item) {
         $("#seltipo").append(
@@ -6,28 +9,40 @@ $.get('gettipo',function (data){
         );
     });
 });
-$.get('getedificio',function (data){
-    $.each(data,function(i,item) {
-        $("#seledificio").append(
-        "<option value="+item.id+">"+item.descripcion+"</option>"
-        );
-    });
-});
+
+
+// $.get('getedificio',function (data){
+//     $.each(data,function(i,item) {
+//         $("#seledificio").append(
+//         "<option value="+item.id+">"+item.descripcion+"</option>"
+//         );
+//     });
+// });
 
 $('#seltipo').change(function(){    
+
+    $.get('getedificio',function (data){
+        $.each(data,function(i,item) {
+            $("#seledificio").append(
+            "<option value="+item.id+">"+item.descripcion+"</option>"
+            );
+        });
+    });
+
+
+
     var $variable = $('#seltipo').val();
     // var $variable = document.getElementById("seltipo").value;
 
     if($variable == 2){
-
-        $('#direccio').remove();
+        $('#direccio').empty();
         $('#selectdep').remove();
 
             $('#seledificio').change(function(){
 
                 var varia = $('#seledificio').val();
                 $('#selectdep').empty();
-                $('#direccio').empty();
+                // $('#direccio').remove();
 
                 $.get('getdied/'+varia+'',function (data){
                     $("#direccio").append(
@@ -56,7 +71,7 @@ $('#seltipo').change(function(){
         $('#selectdep').empty();
 
         $.get('getdep/'+varia+'',function (data){
-            $('#selectdep').empty();
+            // $('#selectdep').empty();
 
             $("#selectdep").append(
                 "<label>Departamento</label>\
@@ -129,6 +144,9 @@ $('#seltipo').change(function(){
     });
 
 }
+
+
+});
 
 
 });

@@ -35,6 +35,7 @@ Route::get('/getedificio',[BuildingController::class, 'GetEdificios']);
 // ---------------------------- Direccion ---------------------------
 Route::resource('/direccion', DireccionController::class);
 Route::get('/getdied/{varia}', [DireccionController::class, 'getdireccion']);
+Route::get('/alldirec',[DireccionController::class, 'getdir']);
 
 
 // ---------------------------- Marcas ---------------------------

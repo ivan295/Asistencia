@@ -7,8 +7,24 @@
 
 	function recargarlista(){
 
-
         var vard = $('#consult_edificio').val();
+
+        $.get('getdir/',function (data){
+            $('#direc').empty() 
+
+            $("#direc").append(
+                "<label>Dirección</label>\
+                <select class='form-control' id='seldirec' name='seldir'>\
+                <option value=''>Seleccionar Dirección</option>\
+                </select>"
+            );
+            $.each(data,function(i,item) {
+                $("#seldirec").append(
+                "<option value="+item.id+">"+item.descripcion+"</option>"
+                );
+            });
+        });
+
         $.get('funselect_dep/'+vard+'',function (data){
 
             $('#selectdep').empty() 
