@@ -29,20 +29,23 @@ class FuncionarioController extends Controller
     public function update(Request $request)
     {
         // dd($request);
-        $dir = \DB::table('department')
-        ->join('direcciones','direcciones.id','=','department.id_direccion')
-        ->select('direcciones.descripcion as here')
-        ->where('id','=',$request->departamento)
-        ->get();
-        dd($dir);
-
+        if($request->departamento != null){
+            $dir = \DB::table('department')
+            ->join('direcciones','direcciones.id','=','department.id_direccion')
+            ->select('direcciones.id as here')
+            ->where('department.id','=',$request->departamento)
+            ->first();
+            $tipo= $dir->here;
+        }else if($request->seldir != null){
+            $tipo = $request->seldir;
+        }
+       
         $request->validate([
             'cedula' => 'required|unique:users,cedula|max:10',
             'edificio'=>'required',
-            'departamento'=>'required',
-            'password' =>'required',
-            'tipouser'=>'required'
+            'password' =>'required'
             ]);
+
         $id=Auth::user()->id;
         $edituser = User::find($id);
         $edituser->name = $request->nombre;
@@ -50,12 +53,10 @@ class FuncionarioController extends Controller
         $edituser->cedula = $request->cedula;
         $edituser->direccion = $request->ubicacion;
         $edituser->sexo = $request->genero;
-        $edituser->id_tipouser = $request->tipouser;
         $edituser->id_edificio = $request->edificio;
         $edituser->id_departamento = $request->departamento;
-        id_direccion;
+        $edituser->id_direccion = $tipo;
         $edituser->password= bcrypt($request->password);
-
         $edituser->save();
         // return view('adminlte::home')->with('success','Funcionario Guardado con éxito');
         return redirect('/home')->with('success','Funcionario Guardado con éxito');
